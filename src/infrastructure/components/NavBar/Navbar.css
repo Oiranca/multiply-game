@@ -1,0 +1,65 @@
+:root {
+    --mainColor: #4B6587;
+    --secondColor: #F0E5CF;
+    --highlightColor: #F7F6F2;
+    --shadowColor: #C8C6C6;
+
+}
+
+.container-navbar {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+.context-navbar {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0.5rem;
+    background: var(--mainColor);
+    width: calc(100% - 10%);
+}
+
+.section-logo {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 1px;
+
+}
+
+.section-tittle {
+    color: var(--secondColor);
+    font-size: 2rem;
+    margin: unset;
+}
+
+.section-button-navbar {
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    padding: 1px;
+}
+
+.navbar-button {
+    background:none;
+    border: 4px dashed var(--secondColor);
+    margin: 1rem;
+    width: 5rem;
+    height: 4rem;
+    font-size: 1rem;
+    font-weight: bold;
+    color: var(--secondColor);
+    border-top-right-radius: 2rem;
+    border-top-left-radius: 2rem;
+}
+
+.navbar-button:hover{
+    cursor: pointer;
+    background:var(--secondColor);
+    border: 4px dotted var(--mainColor);
+    color: var(--mainColor);
+    border-radius: 0 0 2rem 2rem;
+}
