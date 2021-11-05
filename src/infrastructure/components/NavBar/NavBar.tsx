@@ -8,8 +8,6 @@ export const NavBar: FC<unknown> = () => {
       <div className={'context-navbar'}>
         <section className={'section-logo'}>
           <img id={'logo'} src={Logo} alt={'Logo'} />
-        </section>
-        <section className={'section-tittle'}>
           <h1 id={'tittle'}>Your Multiply</h1>
         </section>
         <section className={'section-button-navbar'}>
