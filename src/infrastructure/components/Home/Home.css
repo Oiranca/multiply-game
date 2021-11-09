@@ -1,0 +1,38 @@
+:root {
+    --mainColor: #4B6587;
+    --secondColor: #F0E5CF;
+    --highlightColor: #F7F6F2;
+    --shadowColor: #C8C6C6;
+
+}
+
+.container-home {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-content: center;
+    background: var(--secondColor);
+    border: 4px solid var(--mainColor);
+
+}
+
+.header-home {
+    color: var(--mainColor);
+    font-size: 2rem;
+    font-weight: bold;
+}
+
+.section-home {
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.footer-home {
+    margin: 2rem;
+
+}
+
+#home-logo {
+    width: 6rem;
+    height: 5rem;
+}

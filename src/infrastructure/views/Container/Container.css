@@ -1,0 +1,27 @@
+:root {
+    --mainColor: #4B6587;
+    --secondColor: #F0E5CF;
+    --highlightColor: #F7F6F2;
+    --shadowColor: #C8C6C6;
+
+}
+
+.container-view {
+    display: flex;
+    flex-direction: column;
+
+}
+
+.section-body {
+    display: flex;
+    justify-content: center;
+    align-content: center;
+}
+
+.container-home {
+    width: 50%;
+    padding: 2rem;
+    margin: 4rem;
+}
+
+
