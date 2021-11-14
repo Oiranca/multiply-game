@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import './Container.css';
 import { NavBar } from '../../components/NavBar/NavBar';
-import { Home } from '../../components/Home/Home';
+import { PiecesNumbers } from '../../components/PiecesNumbers/PiecesNumbers';
 
 export const Container: FC = () => {
   return (
@@ -10,7 +10,7 @@ export const Container: FC = () => {
         <NavBar />
       </header>
       <section className={'section-body'}>
-        <Home />
+        <PiecesNumbers />
       </section>
     </div>
   );

@@ -1,0 +1,27 @@
+:root {
+    --mainColor: #4B6587;
+    --secondColor: #F0E5CF;
+    --highlightColor: #F7F6F2;
+    --shadowColor: #C8C6C6;
+}
+
+.pieces-number {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    margin: 0.5rem;
+    width: 5rem;
+    height: 2rem;
+    background-color: var(--mainColor);
+    color: var(--secondColor);
+    border-radius: 0.5rem 0 1rem 0.5rem;
+}
+.multiply-number{
+    font-weight: bold;
+}
+
+.check-operation {
+    width: 1.2rem;
+    height: 1.2rem;
+    border-radius: 100%;
+}
