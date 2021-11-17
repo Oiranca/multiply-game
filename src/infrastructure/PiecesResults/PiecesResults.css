@@ -5,6 +5,12 @@
     --shadowColor: #C8C6C6;
 }
 
+.results-container {
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-template-rows: repeat(2, 1fr);
+}
+
 .pieces-result {
     display: flex;
     justify-content: space-around;
@@ -16,7 +22,8 @@
     color: var(--secondColor);
     border-radius: 0 0.5rem 0.5rem 1rem;
 }
-.result{
+
+.result {
     font-weight: bold;
 }
 
