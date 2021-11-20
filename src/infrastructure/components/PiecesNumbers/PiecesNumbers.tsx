@@ -12,7 +12,7 @@ export const PiecesNumbers: FC <PropsPiecesNumber>= ({numberForMultiply,numberTo
     !checkOperation ? setColorCheck('#e11a08') : setColorCheck('#33e014');
   }, [checkOperation]);
   return (
-    <article className={'multiply-table'}>
+    <article className={'table-multiply'}>
       {numberForMultiply.map(value => (
         <article className={'pieces-number'} key={value} id={`piece-${value}`}>
           <section className={'multiply-number'}>{`${numberToMultiply}x${value}`}</section>
