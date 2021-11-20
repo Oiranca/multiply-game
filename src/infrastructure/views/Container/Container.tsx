@@ -1,9 +1,7 @@
 import React, { FC } from 'react';
 import './Container.css';
 import { NavBar } from '../../components/NavBar/NavBar';
-import { PiecesNumbers } from '../../components/PiecesNumbers/PiecesNumbers';
-import { NumberForMultiply } from '../../../mock/NumberForMultiply';
-import { NumberToMultiply } from '../../../mock/NumberToMultiply';
+import { PiecesResults } from '../../components/PiecesResults/PiecesResults';
 
 export const Container: FC = () => {
   return (
@@ -12,7 +10,7 @@ export const Container: FC = () => {
         <NavBar />
       </header>
       <section className={'section-body'}>
-        <PiecesNumbers numberForMultiply={NumberForMultiply} numberToMultiply={NumberToMultiply}/>
+        <PiecesResults numberToMultiply={1} />
       </section>
     </div>
   );
