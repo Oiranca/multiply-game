@@ -1,5 +1,5 @@
 import { FC, useEffect, useState } from 'react';
-import { randomPosition } from '../utils/randomPosition/randomPositionMethod';
+import { randomPosition } from '../../utils/randomPosition/randomPositionMethod';
 
 import './PiecesResults.css';
 

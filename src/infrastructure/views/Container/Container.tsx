@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import './Container.css';
 import { NavBar } from '../../components/NavBar/NavBar';
-import { PiecesResults } from '../../PiecesResults/PiecesResults';
+import { PiecesResults } from '../../components/PiecesResults/PiecesResults';
 
 export const Container: FC = () => {
   return (
