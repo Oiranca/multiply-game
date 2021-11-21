@@ -17,6 +17,7 @@ export const Container: FC = () => {
           numberForMultiply={NumberForMultiply}
           numberToMultiply={NumberToMultiply}
         />
+        <PiecesResults numberToMultiply={1} />
       </section>
     </div>
   );
