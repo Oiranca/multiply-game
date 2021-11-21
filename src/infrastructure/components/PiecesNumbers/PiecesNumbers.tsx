@@ -27,10 +27,11 @@ export const PiecesNumbers: FC<PropsPiecesNumber> = ({
     <article className={'table-multiply'}>
       {position.map(value => (
         <article className={'pieces-number'} key={value} id={`piece-${value}`}>
+          <section className={'check-operation'} style={{ background: colorCheck }} />
+
           <section
             className={'multiply-number'}
           >{`${numberToMultiply}x${value}`}</section>
-          <section className={'check-operation'} style={{ background: colorCheck }} />
         </article>
       ))}
     </article>
