@@ -13,11 +13,12 @@
 
 .pieces-number {
     display: flex;
-    justify-content: space-around;
+    justify-content: space-evenly;
     align-items: center;
     margin: 0.5rem;
     width: 5rem;
     height: 2rem;
+
     background-color: var(--mainColor);
     color: var(--secondColor);
     border-radius: 0.5rem 0 1rem 0.5rem;
@@ -25,6 +26,7 @@
 
 .multiply-number {
     font-weight: bold;
+
 }
 
 .check-operation {
