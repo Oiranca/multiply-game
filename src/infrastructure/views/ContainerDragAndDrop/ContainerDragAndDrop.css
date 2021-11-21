@@ -1,0 +1,50 @@
+:root {
+    --mainColor: #4B6587;
+    --secondColor: #F0E5CF;
+    --highlightColor: #F7F6F2;
+    --shadowColor: #C8C6C6;
+}
+
+.container-drag-and-drop {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 2rem;
+
+}
+
+.container-pieces {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2rem;
+    margin: 1rem;
+}
+
+.container-items-multiply {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    gap: 2rem;
+    margin: 1rem;
+    width: 100%;
+
+}
+
+.container-pieces-multiply {
+    background-color: var(--mainColor);
+    padding: 1rem;
+    border-radius: 0.5rem 0 1rem 0.5rem;
+    width: calc(100% - 20%);
+    color: var(--secondColor);
+}
+
+.container-pieces-results {
+    background-color: var(--mainColor);
+    padding: 1rem;
+    border-radius: 0 0.5rem 0.5rem 1rem;
+    width: calc(100% - 20%);
+    color: var(--secondColor);
+
+}
