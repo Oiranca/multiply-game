@@ -3,45 +3,69 @@ import { randomPosition } from '../../utils/randomPosition/randomPositionMethod'
 import { PiecesNumbers } from '../PiecesNumbers/PiecesNumbers';
 
 import './Multiply.css';
+import { PiecesResults } from '../PiecesResults/PiecesResults';
 
 interface PropsMultiply {
   numberToMultiply: number;
 }
 
 export const Multiply: FC<PropsMultiply> = ({ numberToMultiply }) => {
-  const [checkOperation, setCheckOperation] = useState<boolean>(true);
+  const [checkOperation, setCheckOperation] = useState<boolean>(false);
   const [colorCheck, setColorCheck] = useState<string>('#e11a08');
-  const [position, setPosition] = useState<number[]>([]);
+  const [positionNumber, setPositionNumber] = useState<number[]>([]);
+  const [positionResults, setPositionResults] = useState<number[]>([]);
   const [randomTablePosition, setRandomTablePosition] = useState<boolean>(true);
 
   useEffect(() => {
     !checkOperation ? setColorCheck('#e11a08') : setColorCheck('#33e014');
   }, [checkOperation]);
 
+  const getOrder = () => (firstPosition: number, otherPosition: number) => {
+    return firstPosition - otherPosition;
+  };
+
   useEffect(() => {
-    randomTablePosition
-      ? setPosition(randomPosition(1, 11))
-      : setPosition(
-          randomPosition(1, 11).sort((firstPosition: number, otherPosition: number) => {
-            return firstPosition - otherPosition;
-          })
-        );
+    if (randomTablePosition) {
+      setPositionNumber(randomPosition(1, 11));
+      setPositionResults(randomPosition(1, 11));
+    }
+    if (!randomTablePosition) {
+      setPositionNumber(randomPosition(1, 11).sort(getOrder()));
+      setPositionResults(randomPosition(1, 11).sort(getOrder()));
+    }
   }, [randomTablePosition]);
   /*TODO:realizar drag a drop*/
   const handledSelection = (e: React.MouseEvent<Element, MouseEvent>) => {
     e.preventDefault();
+    console.log(e.currentTarget.id);
   };
 
   return (
-    <article className={'multiply'}>
-      {position.map(value => (
-        <PiecesNumbers
-          key={value}
-          numberToMultiply={numberToMultiply}
-          value={value}
-          onClickSelection={handledSelection}
-        />
-      ))}
-    </article>
+    <>
+      <header className={'header-multiply'}>
+        <article className={'multiply'}>
+          {positionNumber.map(value => (
+            <PiecesNumbers
+              key={value}
+              numberToMultiply={numberToMultiply}
+              value={value}
+              onClickSelection={handledSelection}
+              isDraggable={true}
+            />
+          ))}
+        </article>
+        <article className={'results'}>
+          {positionResults.map(value => (
+            <PiecesResults
+              key={value}
+              numberToMultiply={numberToMultiply}
+              value={value}
+              onClickSelection={handledSelection}
+              isDraggable={true}
+            />
+          ))}
+        </article>
+      </header>
+    </>
   );
 };

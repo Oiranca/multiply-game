@@ -10,7 +10,7 @@ export const Container: FC = () => {
         <NavBar />
       </header>
       <section className={'section-body'}>
-        <Multiply numberToMultiply={1}/>
+        <Multiply numberToMultiply={2}/>
       </section>
     </div>
   );

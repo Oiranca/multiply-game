@@ -1,6 +1,23 @@
 
+
+.header-multiply{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+    align-items: center;
+    width: calc(100% - 30%);
+
+}
 .multiply {
     display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(2, 1fr);
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(auto-fit,1fr);
+    margin: 1rem;
+
+}
+.results {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: repeat(auto-fit,1fr);
+    margin: 1rem;
 }
