@@ -43,7 +43,8 @@ export const Multiply: FC<PropsMultiply> = ({ numberToMultiply }) => {
   return (
     <>
       <header className={'header-multiply'}>
-        <article className={'multiply'}>
+        <section className={'multiply'}><h1 className={'tittles'}>Tabla de Multiplicar</h1>
+        <article className={'multiply-pieces'}>
           {positionNumber.map(value => (
             <PiecesNumbers
               key={value}
@@ -54,7 +55,9 @@ export const Multiply: FC<PropsMultiply> = ({ numberToMultiply }) => {
             />
           ))}
         </article>
-        <article className={'results'}>
+        </section>
+        <section className={'results'}><h1 className={'tittles'}>Resultados de la Multiplicación</h1>
+        <article className={'results-pieces'}>
           {positionResults.map(value => (
             <PiecesResults
               key={value}
@@ -65,6 +68,7 @@ export const Multiply: FC<PropsMultiply> = ({ numberToMultiply }) => {
             />
           ))}
         </article>
+        </section>
       </header>
     </>
   );

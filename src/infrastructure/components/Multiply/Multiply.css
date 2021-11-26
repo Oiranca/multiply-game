@@ -8,16 +8,21 @@
     width: calc(100% - 30%);
 
 }
-.multiply {
+.multiply-pieces {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(auto-fit,1fr);
     margin: 1rem;
 
 }
-.results {
+.results-pieces {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     grid-template-rows: repeat(auto-fit,1fr);
     margin: 1rem;
+}
+.tittles{
+    color: var(--mainColor);
+    font-weight: bold;
+    border-bottom: 2px solid var(--mainColor);
 }
