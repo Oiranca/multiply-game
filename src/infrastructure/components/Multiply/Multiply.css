@@ -1,28 +1,70 @@
 
+.container-multiply {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    width: calc(100% - 10%);
 
-.header-multiply{
+}
+
+.header-multiply {
     display: flex;
     flex-direction: row;
     justify-content: space-around;
     align-items: center;
-    width: calc(100% - 30%);
+    width: calc(100% - 10%);
 
 }
+
 .multiply-pieces {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(auto-fit,1fr);
+    display: flex;
+    flex-direction: column;
     margin: 1rem;
 
 }
+
 .results-pieces {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    grid-template-rows: repeat(auto-fit,1fr);
+    grid-template-rows: repeat(auto-fit, 1fr);
     margin: 1rem;
 }
-.tittles{
+
+.tittles {
     color: var(--mainColor);
     font-weight: bold;
     border-bottom: 2px solid var(--mainColor);
+}
+
+.drag-and-drop-zone {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: initial;
+    width: calc(100% - 30%);
+
+}
+
+.container-drag-and-drop {
+    display: flex;
+    justify-content: center;
+}
+
+.tablet-zone {
+    letter-spacing: 1px;
+    font-family: sans-serif;
+}
+
+.cell-multiply {
+    border: 1px solid rgb(100, 100, 100);
+    border-radius: 0.5rem 0 1rem 0.5rem;
+}
+
+.cell-results {
+    border: 1px solid rgb(100, 100, 100);
+    border-radius: 0 0.5rem 0.5rem 1rem;
+    width: 5rem;
+    height: 2rem;
+
 }

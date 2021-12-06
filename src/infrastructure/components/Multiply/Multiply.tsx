@@ -14,7 +14,7 @@ export const Multiply: FC<PropsMultiply> = ({ numberToMultiply }) => {
   const [colorCheck, setColorCheck] = useState<string>('#e11a08');
   const [positionNumber, setPositionNumber] = useState<number[]>([]);
   const [positionResults, setPositionResults] = useState<number[]>([]);
-  const [randomTablePosition, setRandomTablePosition] = useState<boolean>(true);
+  const [randomTablePosition, setRandomTablePosition] = useState<boolean>(false);
 
   useEffect(() => {
     !checkOperation ? setColorCheck('#e11a08') : setColorCheck('#33e014');
@@ -42,34 +42,51 @@ export const Multiply: FC<PropsMultiply> = ({ numberToMultiply }) => {
 
   return (
     <>
-      <header className={'header-multiply'}>
-        <section className={'multiply'}><h1 className={'tittles'}>Tabla de Multiplicar</h1>
-        <article className={'multiply-pieces'}>
-          {positionNumber.map(value => (
-            <PiecesNumbers
-              key={value}
-              numberToMultiply={numberToMultiply}
-              value={value}
-              onClickSelection={handledSelection}
-              isDraggable={true}
-            />
-          ))}
-        </article>
+      <div className={'container-multiply'}>
+        <header className={'header-multiply'}>
+          <section className={'results'}>
+            <h1 className={'tittles'}>Resultados de la Multiplicación</h1>
+            <article className={'results-pieces'}>
+              {positionResults.map(value => (
+                <PiecesResults
+                  key={value}
+                  numberToMultiply={numberToMultiply}
+                  value={value}
+                  onClickSelection={handledSelection}
+                  isDraggable={true}
+                />
+              ))}
+            </article>
+          </section>
+        </header>
+        <section className={'drag-and-drop-zone'}>
+          <h1 className={'tittles'}>Tabla del {numberToMultiply}</h1>
+          <section className={'container-drag-and-drop'}>
+            <table className={'tablet-zone'}>
+              <tbody>
+                <tr>
+                  {positionNumber.map(value => (
+                    <td className={'cell-multiply'}>
+                      <PiecesNumbers
+                        key={value}
+                        numberToMultiply={numberToMultiply}
+                        value={value}
+                        onClickSelection={handledSelection}
+                        isDraggable={true}
+                      />
+                    </td>
+                  ))}
+                </tr>
+                <tr>
+                  {positionNumber.map(value => (
+                    <td className={'cell-results'} key={value}/>
+                  ))}
+                </tr>
+              </tbody>
+            </table>
+          </section>
         </section>
-        <section className={'results'}><h1 className={'tittles'}>Resultados de la Multiplicación</h1>
-        <article className={'results-pieces'}>
-          {positionResults.map(value => (
-            <PiecesResults
-              key={value}
-              numberToMultiply={numberToMultiply}
-              value={value}
-              onClickSelection={handledSelection}
-              isDraggable={true}
-            />
-          ))}
-        </article>
-        </section>
-      </header>
+      </div>
     </>
   );
 };
