@@ -1,9 +1,9 @@
 import React, { FC, useEffect, useState } from 'react';
 import { randomPosition } from '../../utils/randomPosition/randomPositionMethod';
 import { PiecesNumbers } from '../PiecesNumbers/PiecesNumbers';
+import { PiecesResults } from '../PiecesResults/PiecesResults';
 
 import './Multiply.css';
-import { PiecesResults } from '../PiecesResults/PiecesResults';
 
 interface PropsMultiply {
   numberToMultiply: number;
@@ -43,47 +43,45 @@ export const Multiply: FC<PropsMultiply> = ({ numberToMultiply }) => {
   return (
     <>
       <div className={'container-multiply'}>
-        <header className={'header-multiply'}>
-          <section className={'results'}>
-            <h1 className={'tittles'}>Resultados de la Multiplicación</h1>
-            <article className={'results-pieces'}>
-              {positionResults.map(value => (
-                <PiecesResults
-                  key={value}
-                  numberToMultiply={numberToMultiply}
-                  value={value}
-                  onClickSelection={handledSelection}
-                  isDraggable={true}
-                />
-              ))}
-            </article>
+        <section className={'container-body'}>
+          <section className={'container-result'}>
+            <h1 id={'title-multiply'}> Tabla del {numberToMultiply}</h1>
+
+            <section className={'results'}>
+              <h1 id={'title-result'}>Lista de resultados</h1>
+              <article className={'results-pieces'}>
+                {positionResults.map(value => (
+                  <PiecesResults
+                    key={value}
+                    numberToMultiply={numberToMultiply}
+                    value={value}
+                    onClickSelection={handledSelection}
+                    isDraggable={true}
+                  />
+                ))}
+              </article>
+            </section>
           </section>
-        </header>
-        <section className={'drag-and-drop-zone'}>
-          <h1 className={'tittles'}>Tabla del {numberToMultiply}</h1>
-          <section className={'container-drag-and-drop'}>
-            <table className={'tablet-zone'}>
-              <tbody>
-                <tr>
-                  {positionNumber.map(value => (
-                    <td className={'cell-multiply'}>
-                      <PiecesNumbers
-                        key={value}
-                        numberToMultiply={numberToMultiply}
-                        value={value}
-                        onClickSelection={handledSelection}
-                        isDraggable={true}
-                      />
-                    </td>
-                  ))}
-                </tr>
-                <tr>
-                  {positionNumber.map(value => (
-                    <td className={'cell-results'} key={value}/>
-                  ))}
-                </tr>
-              </tbody>
-            </table>
+          <section className={'drag-and-drop-zone'}>
+            <ul className={'list-multiply'}>
+              {positionNumber.map(value => (
+                <li key={value} className={'item-multiply'}>
+                  <PiecesNumbers
+                    key={value}
+                    numberToMultiply={numberToMultiply}
+                    value={value}
+                    onClickSelection={handledSelection}
+                    isDraggable={true}
+                  />
+                </li>
+              ))}
+            </ul>
+
+            <ul className={'list-results'}>
+              {positionNumber.map(value => (
+                <li key={value} className={'item-result'} />
+              ))}
+            </ul>
           </section>
         </section>
       </div>
