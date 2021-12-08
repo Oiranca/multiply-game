@@ -5,11 +5,6 @@
     --shadowColor: #C8C6C6;
 }
 
-.table-multiply {
-    display: grid;
-    grid-template-columns: repeat(5, 1fr);
-    grid-template-rows: repeat(2, 1fr);
-}
 
 .pieces-number {
     display: flex;
@@ -18,10 +13,11 @@
     margin: 0.5rem;
     width: 5rem;
     height: 2rem;
-
     background-color: var(--mainColor);
     color: var(--secondColor);
     border-radius: 0.5rem 0 1rem 0.5rem;
+    cursor: pointer;
+
 }
 
 .multiply-number {

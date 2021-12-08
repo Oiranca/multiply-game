@@ -1,48 +1,36 @@
-import { FC, useEffect, useState } from 'react';
-import { randomPosition } from '../../utils/randomPosition/randomPositionMethod';
+import React, { FC, useEffect, useState } from 'react';
 
 import './PiecesResults.css';
 
 interface PropsResult {
   numberToMultiply: number;
+  value: number;
+  onClickSelection: (e: React.MouseEvent) => void;
+  isDraggable:boolean
+
 }
 
-export const PiecesResults: FC<PropsResult> = ({ numberToMultiply }) => {
+export const PiecesResults: FC<PropsResult> = ({
+  numberToMultiply,
+  value,
+  onClickSelection,isDraggable
+}) => {
   const [checkResult, setCheckResult] = useState<boolean>(false);
   const [colorCheck, setColorCheck] = useState<string>('#e11a08');
-  const [position, setPosition] = useState<number[]>([]);
-  const [results, setResults] = useState<number[]>([]);
   useEffect(() => {
     !checkResult ? setColorCheck('#e11a08') : setColorCheck('#33e014');
   }, [checkResult]);
 
-  const calculateResults = (numberToMultiply: number) => {
-    let count = position.length;
-    let values: number[] = [];
-
-    while (count !== 0) {
-      values.push(numberToMultiply * count);
-      count--;
-    }
-    return values;
+  const calculateResults = (numberToMultiply: number, values: number) => {
+    return values * numberToMultiply;
   };
 
-  useEffect(() => {
-    setPosition(randomPosition(1, 11));
-  }, []);
-
-  useEffect(() => {
-    setResults(calculateResults(numberToMultiply));
-  }, [position,numberToMultiply]);
-
   return (
-    <article className={'results-container'}>
-      {position.map((values, index) => (
-        <article className={'pieces-result'} key={values} id={`pieces-${values}`}>
-          <section className={'result'}>= {results[values - 1]}</section>
-          <section className={'result-check'} style={{ background: colorCheck }} />
-        </article>
-      ))}
+    <article className={'pieces-result'} id={`result-index-${value}`} onClick={onClickSelection} draggable={isDraggable}>
+      <section className={'result'}>
+        = {calculateResults(numberToMultiply, value)}
+      </section>
+      <section className={'result-check'} style={{ background: colorCheck }} />
     </article>
   );
 };
