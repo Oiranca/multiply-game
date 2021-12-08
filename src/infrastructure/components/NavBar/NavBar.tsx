@@ -15,7 +15,7 @@ export const NavBar: FC<unknown> = () => {
             Sign In
           </button>
           <button type={'button'} className={'navbar-button'}>
-            Log In
+            Login
           </button>
         </section>
       </div>
