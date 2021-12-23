@@ -36,7 +36,9 @@ export const Multiply: FC<PropsMultiply> = ({ numberToMultiply }) => {
     }
   }, [randomTablePosition]);
 
-  const indexNumber = (item: string) => {
+  const indexNumber = (e: React.DragEvent) => {
+    const item = e.currentTarget.id;
+
     let index: number;
 
     return item
@@ -52,10 +54,17 @@ export const Multiply: FC<PropsMultiply> = ({ numberToMultiply }) => {
 
   /*TODO:realizar drag a drop*/
   const onDragStartEvent = (e: React.DragEvent) => {
-    e.dataTransfer.setData('text/plain','');
-    const item = e.currentTarget.id;
-    console.log(indexNumber(item));
-    return indexNumber(item);
+    e.dataTransfer.setData('text/plain', '');
+    console.log(indexNumber(e));
+    return indexNumber(e);
+  };
+
+  const onDragOverEvent = (e: React.DragEvent) => {
+    e.preventDefault();
+  };
+  const onDropEvent = (e: React.DragEvent) => {
+    e.preventDefault();
+    return indexNumber(e);
   };
 
   return (
@@ -95,7 +104,13 @@ export const Multiply: FC<PropsMultiply> = ({ numberToMultiply }) => {
 
             <ul className={'list-results'}>
               {positionNumber.map(value => (
-                <li key={value} className={'item-result'} />
+                <li
+                  key={value}
+                  id={`number-index-${value}`}
+                  className={'drop-zone-result'}
+                  onDragOver={onDragOverEvent}
+                  onDrop={onDropEvent}
+                />
               ))}
             </ul>
           </section>
