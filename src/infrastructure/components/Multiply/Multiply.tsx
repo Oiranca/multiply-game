@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import React, { DragEventHandler, FC, useEffect, useState } from 'react';
 import { randomPosition } from '../../utils/randomPosition/randomPositionMethod';
 import { PiecesNumbers } from '../PiecesNumbers/PiecesNumbers';
 import { PiecesResults } from '../PiecesResults/PiecesResults';
@@ -15,6 +15,7 @@ export const Multiply: FC<PropsMultiply> = ({ numberToMultiply }) => {
   const [positionNumber, setPositionNumber] = useState<number[]>([]);
   const [positionResults, setPositionResults] = useState<number[]>([]);
   const [randomTablePosition, setRandomTablePosition] = useState<boolean>(false);
+  const [dragItems, setDragItems] = useState<Element[]>([]);
 
   useEffect(() => {
     !checkOperation ? setColorCheck('#e11a08') : setColorCheck('#33e014');
@@ -34,10 +35,27 @@ export const Multiply: FC<PropsMultiply> = ({ numberToMultiply }) => {
       setPositionResults(randomPosition(1, 11).sort(getOrder()));
     }
   }, [randomTablePosition]);
+
+  const indexNumber = (item: string) => {
+    let index: number;
+
+    return item
+      .split('-')
+      .map(a => {
+        if (!isNaN(Number(a))) {
+          index = Number(a);
+        }
+        return index;
+      })
+      .find(indexValue => indexValue !== undefined);
+  };
+
   /*TODO:realizar drag a drop*/
-  const handledSelection = (e: React.MouseEvent<Element, MouseEvent>) => {
-    e.preventDefault();
-    console.log(e.currentTarget.id);
+  const onDragStartEvent = (e: React.DragEvent) => {
+    e.dataTransfer.setData('text/plain','');
+    const item = e.currentTarget.id;
+    console.log(indexNumber(item));
+    return indexNumber(item);
   };
 
   return (
@@ -55,7 +73,7 @@ export const Multiply: FC<PropsMultiply> = ({ numberToMultiply }) => {
                     key={value}
                     numberToMultiply={numberToMultiply}
                     value={value}
-                    onClickSelection={handledSelection}
+                    onDragStart={onDragStartEvent}
                     isDraggable={true}
                   />
                 ))}
@@ -70,8 +88,6 @@ export const Multiply: FC<PropsMultiply> = ({ numberToMultiply }) => {
                     key={value}
                     numberToMultiply={numberToMultiply}
                     value={value}
-                    onClickSelection={handledSelection}
-                    isDraggable={true}
                   />
                 </li>
               ))}
