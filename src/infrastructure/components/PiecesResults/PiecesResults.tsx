@@ -5,8 +5,8 @@ import './PiecesResults.css';
 interface PropsResult {
   numberToMultiply: number;
   value: number;
-  onDragStart: (e: React.DragEvent) => void;
-  isDraggable: boolean;
+  onDragStart?: (e: React.DragEvent) => void;
+  isDraggable?: boolean;
 }
 
 export const PiecesResults: FC<PropsResult> = ({
