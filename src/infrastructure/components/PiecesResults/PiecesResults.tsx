@@ -7,15 +7,16 @@ interface PropsResult {
   value: number;
   onDragStart?: (e: React.DragEvent) => void;
   isDraggable?: boolean;
+  checkResult?:boolean;
 }
 
 export const PiecesResults: FC<PropsResult> = ({
   numberToMultiply,
   value,
   onDragStart,
-  isDraggable
+  isDraggable,
+  checkResult
 }) => {
-  const [checkResult, setCheckResult] = useState<boolean>(false);
   const [colorCheck, setColorCheck] = useState<string>('#e11a08');
   useEffect(() => {
     !checkResult ? setColorCheck('#e11a08') : setColorCheck('#33e014');

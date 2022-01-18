@@ -4,14 +4,15 @@ import './PiecesNumbers.css';
 interface PropsPiecesNumber {
   numberToMultiply: number;
   value: number;
+  checkOperation?:boolean;
 }
 
 export const PiecesNumbers: FC<PropsPiecesNumber> = ({
   numberToMultiply,
   value,
+                                                       checkOperation
 }) => {
   const [values, setValues] = useState<number>(value);
-  const [checkOperation, setCheckOperation] = useState<boolean>(false);
   const [colorCheck, setColorCheck] = useState<string>('#e11a08');
 
   useEffect(() => {
