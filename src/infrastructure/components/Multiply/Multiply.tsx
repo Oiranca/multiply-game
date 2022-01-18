@@ -1,5 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import { randomPosition } from '../../utils/randomPosition/randomPositionMethod';
+import { getOrder } from '../../utils/OrderPosition/OrderPosition';
+
 import { PiecesNumbers } from '../PiecesNumbers/PiecesNumbers';
 import { PiecesResults } from '../PiecesResults/PiecesResults';
 
@@ -9,35 +11,49 @@ interface PropsMultiply {
   numberToMultiply: number;
 }
 
+const position = randomPosition(1, 11).sort(getOrder());
+const positionResults = randomPosition(1, 11);
+
 export const Multiply: FC<PropsMultiply> = ({ numberToMultiply }) => {
-  const [checkOperation, setCheckOperation] = useState<boolean>(false);
-  const [colorCheck, setColorCheck] = useState<string>('#e11a08');
-  const [positionNumber, setPositionNumber] = useState<number[]>([]);
-  const [positionResults, setPositionResults] = useState<number[]>([]);
-  const [randomTablePosition, setRandomTablePosition] = useState<boolean>(false);
+  const [resultsCorrect, setResultsCorrect] = useState<Record<number, boolean>>({});
 
   useEffect(() => {
-    !checkOperation ? setColorCheck('#e11a08') : setColorCheck('#33e014');
-  }, [checkOperation]);
+    positionResults.map((valueKey: number) =>
+      setResultsCorrect(resultsCorrect => ({ ...resultsCorrect, [valueKey]: false }))
+    );
+  }, []);
 
-  const getOrder = () => (firstPosition: number, otherPosition: number) => {
-    return firstPosition - otherPosition;
+  const indexNumber = (e: React.DragEvent) => {
+    const item = e.currentTarget.id;
+
+    let index: string;
+
+    return item
+      .split('-')
+      .map(arrayItems => {
+        if (!isNaN(Number(arrayItems))) {
+          index = arrayItems;
+        }
+        return index;
+      })
+      .find(indexValue => indexValue !== undefined);
   };
 
-  useEffect(() => {
-    if (randomTablePosition) {
-      setPositionNumber(randomPosition(1, 11));
-      setPositionResults(randomPosition(1, 11));
-    }
-    if (!randomTablePosition) {
-      setPositionNumber(randomPosition(1, 11).sort(getOrder()));
-      setPositionResults(randomPosition(1, 11).sort(getOrder()));
-    }
-  }, [randomTablePosition]);
-  /*TODO:realizar drag a drop*/
-  const handledSelection = (e: React.MouseEvent<Element, MouseEvent>) => {
+  const onDragStartEvent = (e: React.DragEvent) => {
+    e.dataTransfer.setData('text/plain', `${indexNumber(e)}`);
+  };
+
+  const onDragOverEvent = (e: React.DragEvent) => {
     e.preventDefault();
-    console.log(e.currentTarget.id);
+  };
+  // Todo buscar y comnprobar el resultado para cambiar le check
+  const onDropEvent = (e: React.DragEvent) => {
+    e.preventDefault();
+    const dataDragEvent = e.dataTransfer.getData('text');
+    const dataDropEvent = indexNumber(e);
+    if (dataDragEvent === dataDropEvent) {
+      setResultsCorrect({ ...resultsCorrect, [dataDropEvent]: true });
+    }
   };
 
   return (
@@ -46,7 +62,6 @@ export const Multiply: FC<PropsMultiply> = ({ numberToMultiply }) => {
         <section className={'container-body'}>
           <section className={'container-result'}>
             <h1 id={'title-multiply'}> Tabla del {numberToMultiply}</h1>
-
             <section className={'results'}>
               <h1 id={'title-result'}>Lista de resultados</h1>
               <article className={'results-pieces'}>
@@ -55,7 +70,7 @@ export const Multiply: FC<PropsMultiply> = ({ numberToMultiply }) => {
                     key={value}
                     numberToMultiply={numberToMultiply}
                     value={value}
-                    onClickSelection={handledSelection}
+                    onDragStart={onDragStartEvent}
                     isDraggable={true}
                   />
                 ))}
@@ -64,23 +79,41 @@ export const Multiply: FC<PropsMultiply> = ({ numberToMultiply }) => {
           </section>
           <section className={'drag-and-drop-zone'}>
             <ul className={'list-multiply'}>
-              {positionNumber.map(value => (
+              {position.map(value => (
                 <li key={value} className={'item-multiply'}>
                   <PiecesNumbers
                     key={value}
                     numberToMultiply={numberToMultiply}
                     value={value}
-                    onClickSelection={handledSelection}
-                    isDraggable={true}
                   />
                 </li>
               ))}
             </ul>
 
             <ul className={'list-results'}>
-              {positionNumber.map(value => (
-                <li key={value} className={'item-result'} />
-              ))}
+              {Object.entries(resultsCorrect).map(value =>
+                !value[1] ? (
+                  <li
+                    key={Number(value[0])}
+                    id={`number-index-${value[0]}`}
+                    className={`drop-zone-result`}
+                    onDragOver={onDragOverEvent}
+                    onDrop={onDropEvent}
+                  />
+                ) : (
+                  <li
+                    key={Number(value[0])}
+                    id={`number-index-${value[0]}`}
+                    className={`item-result`}
+                  >
+                    <PiecesResults
+                      key={Number(value[0])}
+                      numberToMultiply={numberToMultiply}
+                      value={Number(value[0])}
+                    />
+                  </li>
+                )
+              )}
             </ul>
           </section>
         </section>
