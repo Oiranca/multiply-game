@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import './Container.css';
 import { NavBar } from '../../components/NavBar/NavBar';
-import { Multiply } from '../../components/Multiply/Multiply';
+import { SelectMultiply } from '../../components/SelectMultiply/SelectMultiply';
 
 export const Container: FC = () => {
   return (
@@ -10,7 +10,7 @@ export const Container: FC = () => {
         <NavBar />
       </header>
       <section className={'section-body'}>
-        <Multiply numberToMultiply={2}/>
+        <SelectMultiply />
       </section>
     </div>
   );
