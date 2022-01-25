@@ -1,7 +1,7 @@
 import React, { FC } from 'react';
 import './Container.css';
 import { NavBar } from '../../components/NavBar/NavBar';
-import { SelectMultiply } from '../../components/SelectMultiply/SelectMultiply';
+import { Outlet } from 'react-router-dom';
 
 export const Container: FC = () => {
   return (
@@ -10,7 +10,7 @@ export const Container: FC = () => {
         <NavBar />
       </header>
       <section className={'section-body'}>
-        <SelectMultiply />
+        <Outlet />
       </section>
     </div>
   );
