@@ -1,0 +1,54 @@
+:root {
+    --mainColor: #4B6587;
+    --secondColor: #F0E5CF;
+    --highlightColor: #F7F6F2;
+    --shadowColor: #C8C6C6;
+    --shadow: 10px -1px 15px 4px var(--shadowColor);
+
+}
+
+
+.container-login {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    width: calc(60% - 20%);
+    margin: 8rem;
+    color: var(--mainColor);
+    background: var(--highlightColor);
+    border-radius: 10px;
+    box-shadow: 0 1px 15px 5px var(--mainColor);
+}
+
+#header-login {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+
+    background: var(--secondColor);
+    font-weight: bold;
+    font-size: 2rem;
+    width: 100%;
+    height: 100%;
+    border-right: solid 5px var(--secondColor);
+}
+
+.body-login {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+    width: 100%;
+    height: 100%;
+    margin: 1rem;
+}
+
+#user-input, #password-input {
+    background-color: var(--highlightColor);
+    font-size: 1rem;
+    text-align: center;
+    border-radius: 20px;
+    border: solid 2px var(--mainColor);
+}
