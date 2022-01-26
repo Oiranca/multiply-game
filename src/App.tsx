@@ -16,7 +16,7 @@ function App() {
           <Route index element={<Home />} />
           <Route path={'signIn'} element={<SignIn />} />
           <Route path={'logIn'} element={<LogIn />} />
-          <Route path={'select-multiply'} element={<SelectMultiply />} />
+          <Route path={'selectMultiply'} element={<SelectMultiply />} />
           <Route
             path={'multiply:numberMultiply'}
             element={<Multiply numberToMultiply={Number(':numberMultiply')} />}
