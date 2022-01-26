@@ -6,14 +6,23 @@ export const LogIn: FC = () => {
   return (
     <section className={'container-login'}>
       <header id={'header-login'}>
-        <h1>Login</h1>
+        <h1 id={'title-logIn'}>Login</h1>
       </header>
-      <article className={'body-login'}>
+      <form className={'body-logIn'} method={'post'}>
+        <section className={'section-logIn'}>
           <h2>Usuario</h2>
-          <input type={'text'} id={'user-input'} />
+          <input type={'text'} className={'logIn-input'} />
+        </section>
+        <section className={'section-logIn'}>
           <h2>Contraseña</h2>
-          <input type={'text'} id={'password-input'} />
-      </article>
+          <input type={'password'} className={'logIn-input'} />
+        </section>
+        <section className={'section-logIn'}>
+          <button type={'submit'} id={'button-logIn'}>
+            Aceptar
+          </button>
+        </section>
+      </form>
     </section>
   );
 };
