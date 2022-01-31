@@ -1,9 +1,11 @@
 import React, { FC, useEffect, useState } from 'react';
 
 import '../SelectMultiply/SelectMultiply.css';
+import { useNavigate } from 'react-router-dom';
 
 export const SelectMultiply: FC = () => {
   const [elementToSelect, setElementToSelect] = useState({});
+  const navigate = useNavigate();
 
   useEffect(() => {
     for (let i = 0; i < 10; i++) {
@@ -16,21 +18,14 @@ export const SelectMultiply: FC = () => {
   const indexNumber = (e: React.MouseEvent<HTMLElement>) => {
     const item = e.currentTarget.id;
 
-    let index: string;
-
     return item
       .split('-')
-      .map(arrayItems => {
-        if (!isNaN(Number(arrayItems))) {
-          index = arrayItems;
-        }
-        return index;
-      })
-      .find(indexValue => indexValue !== undefined);
+      .filter(item => !isNaN(Number(item)))
+      .toString();
   };
   const onSelectMultiply = (e: React.MouseEvent<HTMLElement>) => {
-    const valueMultiply = indexNumber(e);
-
+    const numberMultiply = indexNumber(e);
+    navigate(`/multiply/${numberMultiply}`);
   };
   return (
     <>

@@ -6,17 +6,17 @@ import { PiecesNumbers } from '../PiecesNumbers/PiecesNumbers';
 import { PiecesResults } from '../PiecesResults/PiecesResults';
 
 import './Multiply.css';
-
-interface PropsMultiply {
-  numberToMultiply: number;
-}
+import { useParams } from 'react-router-dom';
 
 const position = randomPosition(1, 11).sort(getOrder());
 const positionResults = randomPosition(1, 11);
 
-export const Multiply: FC<PropsMultiply> = ({ numberToMultiply }) => {
+
+export const Multiply: FC = () => {
+  const { numberMultiply } = useParams();
   const [resultsCorrect, setResultsCorrect] = useState<Record<number, boolean>>({});
   const [multiplyNumbers, setMultiplyNumbers] = useState<Record<number, boolean>>({});
+  console.log(numberMultiply);
 
   useEffect(() => {
     positionResults.map((valueKey: number) =>
@@ -66,14 +66,14 @@ export const Multiply: FC<PropsMultiply> = ({ numberToMultiply }) => {
       <div className={'container-multiply'}>
         <section className={'container-body'}>
           <section className={'container-result'}>
-            <h1 id={'title-multiply'}> Tabla del {numberToMultiply}</h1>
+            <h1 id={'title-multiply'}> Tabla del {numberMultiply}</h1>
             <section className={'results'}>
               <h1 id={'title-result'}>Lista de resultados</h1>
               <article className={'results-pieces'}>
                 {positionResults.map(value => (
                   <PiecesResults
                     key={value}
-                    numberToMultiply={numberToMultiply}
+                    numberToMultiply={Number(numberMultiply)}
                     value={value}
                     onDragStart={onDragStartEvent}
                     isDraggable={true}
@@ -89,7 +89,7 @@ export const Multiply: FC<PropsMultiply> = ({ numberToMultiply }) => {
                   <li key={Number(value[0])} className={'item-multiply'}>
                     <PiecesNumbers
                       key={Number(value[0])}
-                      numberToMultiply={numberToMultiply}
+                      numberToMultiply={Number(numberMultiply)}
                       value={Number(value[0])}
                       checkOperation={false}
                     />
@@ -98,7 +98,7 @@ export const Multiply: FC<PropsMultiply> = ({ numberToMultiply }) => {
                   <li key={Number(value[0])} className={'item-multiply'}>
                     <PiecesNumbers
                       key={Number(value[0])}
-                      numberToMultiply={numberToMultiply}
+                      numberToMultiply={Number(numberMultiply)}
                       value={Number(value[0])}
                       checkOperation={true}
                     />
@@ -125,7 +125,7 @@ export const Multiply: FC<PropsMultiply> = ({ numberToMultiply }) => {
                   >
                     <PiecesResults
                       key={Number(value[0])}
-                      numberToMultiply={numberToMultiply}
+                      numberToMultiply={Number(numberMultiply)}
                       value={Number(value[0])}
                       checkResult={true}
                     />

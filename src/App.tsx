@@ -17,10 +17,8 @@ function App() {
           <Route path={'signIn'} element={<SignIn />} />
           <Route path={'logIn'} element={<LogIn />} />
           <Route path={'selectMultiply'} element={<SelectMultiply />} />
-          <Route
-            path={'multiply:numberMultiply'}
-            element={<Multiply numberToMultiply={Number(':numberMultiply')} />}
-          />
+          <Route path={'multiply'} element={<Multiply />} />
+          <Route path={'multiply/:numberMultiply'} element={<Multiply />} />
         </Route>
       </Routes>
     </div>
