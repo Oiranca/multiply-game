@@ -43,7 +43,7 @@
 
 }
 
-.navbar-button {
+#signIn-button,#logIn-button {
     background: none;
     border: 4px dashed var(--secondColor);
     margin: 1rem;
@@ -56,7 +56,7 @@
     border-top-left-radius: 2rem;
 }
 
-.navbar-button:hover {
+#signIn-button:hover,#logIn-button:hover {
     cursor: pointer;
     background: var(--secondColor);
     border: 4px dotted var(--mainColor);

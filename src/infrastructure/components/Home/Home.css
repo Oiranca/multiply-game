@@ -11,8 +11,10 @@
     flex-direction: column;
     justify-content: center;
     align-content: center;
+    width: calc(100% - 20%);
     background: var(--secondColor);
     border: 4px solid var(--mainColor);
+    margin: 1rem;
 
 }
 

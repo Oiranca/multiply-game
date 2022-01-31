@@ -1,0 +1,85 @@
+:root {
+    --mainColor: #4B6587;
+    --secondColor: #F0E5CF;
+    --highlightColor: #F7F6F2;
+    --shadowColor: #C8C6C6;
+    --shadow: 10px -1px 15px 4px var(--shadowColor);
+
+}
+
+
+.container-login {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: calc(80% - 20%);
+    margin: 8rem;
+    color: var(--mainColor);
+    background: var(--secondColor);
+    box-shadow: 0 1px 15px 5px var(--mainColor);
+}
+
+#header-login {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+    font-size: 2rem;
+    width: 50%;
+    height: 100%;
+}
+
+#title-logIn {
+    font-size: 70px;
+    font-weight: bold;
+}
+
+.body-logIn {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+    background: var(--highlightColor);
+    width: 50%;
+    height: 100%;
+
+}
+
+.logIn-input {
+    background-color: var(--highlightColor);
+    font-size: 1rem;
+    text-align: center;
+    border-radius: 20px;
+    border: solid 2px var(--mainColor);
+}
+
+.section-logIn {
+    display: flex;
+    flex-direction: column;
+    align-content: flex-start;
+    align-items: center;
+    margin: 1rem;
+
+}
+
+#button-logIn {
+    background: var(--secondColor);
+    color: var(--mainColor);
+    font-size: 20px;
+    font-weight: bold;
+    text-align: center;
+    width: 100%;
+    border-radius: 20px;
+    border: solid 2px var(--mainColor);
+    margin: 0.5rem;
+}
+
+#button-logIn:hover {
+    cursor: pointer;
+    background: var(--mainColor);
+    color: var(--secondColor);
+    border: solid 2px var(--secondColor);
+    box-shadow: 0 1px 15px 5px var(--mainColor);
+
+}
