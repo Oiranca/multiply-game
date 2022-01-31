@@ -1,7 +1,7 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { randomPosition } from '../../utils/randomPosition/randomPositionMethod';
+import { randomPosition } from '../../utils/RandomPosition/RandomPositionMethod';
 import { getOrder } from '../../utils/OrderPosition/OrderPosition';
 import { PiecesNumbers } from '../PiecesNumbers/PiecesNumbers';
 import { PiecesResults } from '../PiecesResults/PiecesResults';
