@@ -1,22 +1,19 @@
 import React, { FC, useEffect, useState } from 'react';
+import { useParams } from 'react-router-dom';
+
 import { randomPosition } from '../../utils/randomPosition/randomPositionMethod';
 import { getOrder } from '../../utils/OrderPosition/OrderPosition';
-
 import { PiecesNumbers } from '../PiecesNumbers/PiecesNumbers';
 import { PiecesResults } from '../PiecesResults/PiecesResults';
 
 import './Multiply.css';
-import { useParams } from 'react-router-dom';
-
-const position = randomPosition(1, 11).sort(getOrder());
-const positionResults = randomPosition(1, 11);
-
 
 export const Multiply: FC = () => {
   const { numberMultiply } = useParams();
   const [resultsCorrect, setResultsCorrect] = useState<Record<number, boolean>>({});
   const [multiplyNumbers, setMultiplyNumbers] = useState<Record<number, boolean>>({});
-  console.log(numberMultiply);
+  const [position] = useState<number[]>(randomPosition(1, 11).sort(getOrder()));
+  const [positionResults, setPositionResults] = useState<number[]>(randomPosition(1, 11));
 
   useEffect(() => {
     positionResults.map((valueKey: number) =>
@@ -31,17 +28,10 @@ export const Multiply: FC = () => {
   const indexNumber = (e: React.DragEvent) => {
     const item = e.currentTarget.id;
 
-    let index: string;
-
     return item
       .split('-')
-      .map(arrayItems => {
-        if (!isNaN(Number(arrayItems))) {
-          index = arrayItems;
-        }
-        return index;
-      })
-      .find(indexValue => indexValue !== undefined);
+      .filter(item => !isNaN(Number(item)))
+      .toString();
   };
 
   const onDragStartEvent = (e: React.DragEvent) => {
@@ -51,6 +41,12 @@ export const Multiply: FC = () => {
   const onDragOverEvent = (e: React.DragEvent) => {
     e.preventDefault();
   };
+
+  const deleteResultCorrect = (dataDropEvent: string) => {
+    const numberToDelete = Number(dataDropEvent);
+    return positionResults.filter(itemToDelete => itemToDelete !== numberToDelete);
+  };
+
   const onDropEvent = (e: React.DragEvent) => {
     e.preventDefault();
     const dataDragEvent = e.dataTransfer.getData('text');
@@ -58,6 +54,7 @@ export const Multiply: FC = () => {
     if (dataDragEvent === dataDropEvent) {
       setResultsCorrect({ ...resultsCorrect, [dataDropEvent]: true });
       setMultiplyNumbers({ ...multiplyNumbers, [dataDropEvent]: true });
+      setPositionResults(deleteResultCorrect(dataDropEvent));
     }
   };
 
