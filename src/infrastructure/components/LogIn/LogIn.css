@@ -11,7 +11,6 @@
 .container-login {
     display: flex;
     flex-direction: row;
-    justify-content: start;
     align-items: center;
     width: calc(80% - 20%);
     margin: 8rem;
