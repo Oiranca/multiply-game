@@ -19,7 +19,10 @@ export const NavBarLocalStorage: FC<unknown> = () => {
         </section>
         <section className={'section-button-navbar'}>
           <button type={'button'} id={'logIn-button'} onClick={onNavigate}>
-            Log In
+            LogIn
+          </button>
+          <button type={'button'} id={'home-button'} onClick={onNavigate}>
+            Home
           </button>
         </section>
       </div>
