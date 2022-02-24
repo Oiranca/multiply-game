@@ -1,13 +1,14 @@
 import React, { FC } from 'react';
-import './Container.css';
-import { NavBar } from '../../components/NavBar/NavBar';
 import { Outlet } from 'react-router-dom';
+
+import { NavBarLocalStorage } from '../../components/NavBars/NavBarLocalStorage/NavBarLocalStorage';
+import './Container.css';
 
 export const Container: FC = () => {
   return (
     <div className={'container-view'}>
       <header className={'header-container'}>
-        <NavBar />
+        <NavBarLocalStorage />
       </header>
       <section className={'section-body'}>
         <Outlet />
