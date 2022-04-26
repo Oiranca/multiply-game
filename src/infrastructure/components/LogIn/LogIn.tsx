@@ -1,8 +1,8 @@
 import React, { FC } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-import './LogIn.css';
 import Logo from '../../../assets/img/logo.png';
+import './LogIn.css';
 
 export const LogIn: FC = () => {
   const navigate = useNavigate();
@@ -11,25 +11,27 @@ export const LogIn: FC = () => {
     navigate('/multiply/selectMultiply');
   };
   return (
-    <section className={'container-enter-name'}>
-      <header id={'header-enter-name'}>
-        <h1 id={'title-enter-name'}>Nombre de usuario</h1>
+    <div className={'container-log-in'}>
+      <header id={'header-log-in'}>
+        <h1 id={'title-log-in'}>Nombre de usuario</h1>
       </header>
-      <section className={'body-enter-name'}>
+      <article className={'body-log-in'}>
         <section id={'image-logo'}>
           <img id={'logo'} src={Logo} alt={'Logo'} />
         </section>
-        <form className={'form-enter-name'} onSubmit={handleNavigation}>
-          <section className={'section-enter-name'}>
-            <input type={'text'} className={'enter-name-input'} />
-          </section>
-          <section className={'section-enter-name'}>
-            <button type={'submit'} id={'button-enter'}>
-              Aceptar
-            </button>
-          </section>
-        </form>
-      </section>
-    </section>
+        <section className={'form-log-in'}>
+          <form className={'form-log-in'} onSubmit={handleNavigation}>
+            <section className={'section-log-in'}>
+              <input type={'text'} className={'log-in-input'} />
+            </section>
+            <section className={'section-log-in'}>
+              <button type={'submit'} id={'button-log-in'}>
+                Aceptar
+              </button>
+            </section>
+          </form>
+        </section>
+      </article>
+    </div>
   );
 };
