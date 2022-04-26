@@ -10,8 +10,9 @@ export const Home: FC = () => {
       </header>
       <section className={'section-home'}>
         <p>
-          Aquí podrás aprender las tablas de multiplicar de forma divertida y además si realizas
-          correctamente el ejercicio podrás acumular puntos, mientras aprendes.
+          Aquí podrás aprender las tablas de multiplicar de forma divertida y de una
+          manera fácil solamente tendrás que arrastrar el resultado al hueco correcto. ¡¡
+          A por todas !!
         </p>
       </section>
       <footer className={'footer-home'}>
