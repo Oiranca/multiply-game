@@ -61,12 +61,11 @@ export const Multiply: FC = () => {
   return (
     <>
       <div className={'container-multiply'}>
-        <section className={'container-body'}>
-          <section className={'container-result'}>
+          <article className={'container-result'}>
             <h1 id={'title-multiply'}> Tabla del {numberMultiply}</h1>
             <section className={'results'}>
               <h1 id={'title-result'}>Lista de resultados</h1>
-              <article className={'results-pieces'}>
+              <section className={'results-pieces'}>
                 {positionResults.map(value => (
                   <PiecesResults
                     key={value}
@@ -76,10 +75,10 @@ export const Multiply: FC = () => {
                     isDraggable={true}
                   />
                 ))}
-              </article>
+              </section>
             </section>
-          </section>
-          <section className={'drag-and-drop-zone'}>
+          </article>
+          <article className={'drag-and-drop-zone'}>
             <ul className={'list-multiply'}>
               {Object.entries(multiplyNumbers).map(value =>
                 !value[1] ? (
@@ -130,8 +129,7 @@ export const Multiply: FC = () => {
                 )
               )}
             </ul>
-          </section>
-        </section>
+          </article>
       </div>
     </>
   );
