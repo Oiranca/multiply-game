@@ -23,8 +23,8 @@ export const SelectMultiply: FC = () => {
       .filter(item => !isNaN(Number(item)))
       .toString();
   };
-  const onSelectMultiply = (e: React.MouseEvent<HTMLElement>) => {
-    const numberMultiply = indexNumber(e);
+  const onSelectMultiply = (event: React.MouseEvent<HTMLElement>) => {
+    const numberMultiply = indexNumber(event);
     navigate(`/multiply/multiplyGame/${numberMultiply}`);
   };
   return (
