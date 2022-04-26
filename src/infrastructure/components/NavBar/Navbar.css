@@ -43,7 +43,7 @@
 
 }
 
-#signIn-button,#logIn-button,#home-button {
+#home-button {
     background: none;
     border: 4px dashed var(--secondColor);
     margin: 1rem;
@@ -57,7 +57,7 @@
     word-wrap: break-word;
 }
 
-#signIn-button:hover,#logIn-button:hover,#home-button:hover {
+#home-button:hover {
     cursor: pointer;
     background: var(--secondColor);
     border: 4px dotted var(--mainColor);
