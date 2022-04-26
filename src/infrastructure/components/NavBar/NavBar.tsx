@@ -10,10 +10,10 @@ export const NavBar: FC<unknown> = () => {
     const buttonSelect = event.currentTarget.id;
     switch (buttonSelect) {
       case 'logIn-button':
-        navigate('/multiply/logIn');
+        navigate('/multiply-game/logIn');
         break;
       case 'home-button':
-        navigate('/multiply');
+        navigate('/multiply-game');
         break;
     }
   };

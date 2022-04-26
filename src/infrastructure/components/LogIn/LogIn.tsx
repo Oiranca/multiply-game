@@ -8,7 +8,7 @@ export const LogIn: FC = () => {
   const navigate = useNavigate();
 
   const handleNavigation = () => {
-    navigate('/multiply/selectMultiply');
+    navigate('/multiply-game/selectMultiply');
   };
   return (
     <div className={'container-log-in'}>

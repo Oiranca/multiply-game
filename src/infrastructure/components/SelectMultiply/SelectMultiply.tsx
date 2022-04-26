@@ -25,7 +25,7 @@ export const SelectMultiply: FC = () => {
   };
   const onSelectMultiply = (event: React.MouseEvent<HTMLElement>) => {
     const numberMultiply = indexNumber(event);
-    navigate(`/multiply/multiplyGame/${numberMultiply}`);
+    navigate(`/multiply-game/multiply/${numberMultiply}`);
   };
   return (
     <>
