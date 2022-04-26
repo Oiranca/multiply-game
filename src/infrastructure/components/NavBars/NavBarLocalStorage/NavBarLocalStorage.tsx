@@ -6,8 +6,16 @@ import '../Navbar.css';
 export const NavBarLocalStorage: FC<unknown> = () => {
   const navigate = useNavigate();
 
-  const onNavigate = () => {
-    navigate('/logIn');
+  const onNavigate = (event: React.MouseEvent) => {
+    const buttonSelect = event.currentTarget.id;
+    switch (buttonSelect) {
+      case 'logIn-button':
+        navigate('/multiply/logIn');
+        break;
+      case 'home-button':
+        navigate('/multiply');
+        break;
+    }
   };
 
   return (

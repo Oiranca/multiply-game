@@ -7,7 +7,7 @@ export const LogIn: FC = () => {
   const navigate = useNavigate();
 
   const handleNavigation = () => {
-    navigate('/selectMultiply');
+    navigate('/multiply/selectMultiply');
   };
   return (
     <section className={'container-login'}>
