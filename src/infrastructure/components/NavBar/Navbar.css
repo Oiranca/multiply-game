@@ -92,3 +92,9 @@
     }
 
 }
+@media (min-width: 360px) {
+
+    .context-navbar{
+        width: 100%;
+    }
+}

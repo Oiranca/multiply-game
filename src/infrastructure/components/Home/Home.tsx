@@ -1,7 +1,8 @@
 import React, { FC, useEffect, useState } from 'react';
-import './Home.css';
 import Logo from '../../../assets/img/logo.png';
 import { useNavigate } from 'react-router-dom';
+import './Home.css';
+
 
 export const Home: FC = () => {
   const [elementToSelect, setElementToSelect] = useState({});
@@ -15,6 +16,7 @@ export const Home: FC = () => {
       }));
     }
   }, []);
+
   const indexNumber = (e: React.MouseEvent<HTMLElement>) => {
     const item = e.currentTarget.id;
 
@@ -41,9 +43,8 @@ export const Home: FC = () => {
               className={'multiply'}
               onClick={onSelectMultiply}
             >
-              <p id={'header-multiply'}>{[value[1]]}</p>
-              <p id={'header-multiply'}>{[value[0]]}</p>
-
+              <p className={'header-multiply'}>{[value[1]]}</p>
+              <p className={'header-multiply'}>{[value[0]]}</p>
             </section>
           ))}
         </section>

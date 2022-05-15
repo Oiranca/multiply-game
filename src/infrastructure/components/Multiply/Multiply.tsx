@@ -23,7 +23,7 @@ export const Multiply: FC = () => {
     position.map((valueKey: number) =>
       setMultiplyNumbers(multiplyNumbers => ({ ...multiplyNumbers, [valueKey]: false }))
     );
-  }, []);
+  }, [position, positionResults]);
 
   const indexNumber = (e: React.DragEvent) => {
     const item = e.currentTarget.id;

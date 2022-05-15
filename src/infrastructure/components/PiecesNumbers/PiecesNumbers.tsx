@@ -12,7 +12,7 @@ export const PiecesNumbers: FC<PropsPiecesNumber> = ({
   value,
                                                        checkOperation
 }) => {
-  const [values, setValues] = useState<number>(value);
+  const [values] = useState<number>(value);
   const [colorCheck, setColorCheck] = useState<string>('#e11a08');
 
   useEffect(() => {
