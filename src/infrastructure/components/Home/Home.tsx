@@ -43,8 +43,8 @@ export const Home: FC = () => {
               className={'multiply'}
               onClick={onSelectMultiply}
             >
-              <p id={'header-multiply'}>{[value[1]]}</p>
-              <p id={'header-multiply'}>{[value[0]]}</p>
+              <p className={'header-multiply'}>{[value[1]]}</p>
+              <p className={'header-multiply'}>{[value[0]]}</p>
             </section>
           ))}
         </section>
