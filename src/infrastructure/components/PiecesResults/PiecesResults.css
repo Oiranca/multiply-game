@@ -28,3 +28,24 @@
     height: 1.2rem;
     border-radius: 100%;
 }
+
+@media (max-width: 640px) {
+    .pieces-result {
+        justify-content: center;
+        margin: 0.5rem;
+        width: 3.5rem;
+        height: 1.5rem;
+
+    }
+
+    .result {
+        font-size: 12px;
+    }
+
+    .result-check {
+        margin-left: 0.25rem;
+        width: 0.75rem;
+        height: 0.75rem;
+    }
+
+}

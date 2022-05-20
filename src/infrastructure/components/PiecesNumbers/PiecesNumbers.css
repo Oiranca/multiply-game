@@ -29,3 +29,28 @@
     height: 1.2rem;
     border-radius: 100%;
 }
+
+
+@media (max-width: 640px) {
+
+    .pieces-number {
+        justify-content: center;
+        margin: 0.5rem;
+        width: 3.5rem;
+        height: 1.5rem;
+
+    }
+
+    .multiply-number {
+        font-size: 12px;
+
+
+    }
+
+    .check-operation {
+        margin-right: 0.25rem;
+        width: 0.75rem;
+        height: 0.75rem;
+    }
+
+}
