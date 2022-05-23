@@ -102,8 +102,12 @@
 
 .item-result {
     border: 1px solid rgb(100, 100, 100);
-    border-radius: 0.5rem 0 1rem 0.5rem;
+    border-radius: 0 0.5rem 0.5rem 1rem;
     margin: 0.5rem;
-    padding-top: 1.37rem;
 }
 
+.pieces-multiply {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    margin: 0.25rem;
+}
