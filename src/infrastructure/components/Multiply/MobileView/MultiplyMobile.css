@@ -1,0 +1,113 @@
+.container-mobile {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-content: center;
+}
+
+.header-mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#title {
+    font-size: 1rem;
+    text-align: center;
+    color: var(--mainColor);
+    background-color: var(--secondColor);
+    max-width: 70%;
+    min-width: 50%;
+    padding: 0.5rem;
+    border: 2px solid var(--mainColor);
+    border-radius: 0 0 1rem 1rem;
+
+
+}
+
+#information {
+    text-align: center;
+    margin: 0;
+    font-size: 12px;
+    font-variant-caps: all-petite-caps;
+}
+
+.body-mobile-container {
+    display: flex;
+    flex-direction: row-reverse;
+    flex-wrap: nowrap;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 1rem 0;
+}
+
+.result {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    max-width: 50%;
+    min-width: 30%;
+}
+
+
+.content {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    background-color: var(--secondColor);
+    border: 2px solid var(--mainColor);
+    border-radius: 1rem;
+
+
+}
+
+.content-table {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: var(--secondColor);
+    border: 2px solid var(--mainColor);
+    border-radius: 1rem;
+
+
+}
+
+.title-pieces {
+    font-size: 1rem;
+    text-align: center;
+    color: var(--mainColor);
+    background-color: var(--secondColor);
+    padding: 0.5rem;
+    margin: 0.5rem;
+    border: 2px solid var(--mainColor);
+    border-radius: 5rem;
+
+}
+
+.piece {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    margin: 0.25rem;
+}
+
+.table-piece {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    margin: 0.25rem;
+}
+
+.item-result {
+    border: 1px solid rgb(100, 100, 100);
+    border-radius: 0 0.5rem 0.5rem 1rem;
+    margin: 0.5rem;
+}
+
+.pieces-multiply {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr);
+    margin: 0.25rem;
+}
