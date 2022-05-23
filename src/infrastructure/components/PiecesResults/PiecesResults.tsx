@@ -7,7 +7,8 @@ interface PropsResult {
   value: number;
   onDragStart?: (e: React.DragEvent) => void;
   isDraggable?: boolean;
-  checkResult?:boolean;
+  checkResult?: boolean;
+  onClickResult?: (event: React.MouseEvent) => void;
 }
 
 export const PiecesResults: FC<PropsResult> = ({
@@ -15,7 +16,8 @@ export const PiecesResults: FC<PropsResult> = ({
   value,
   onDragStart,
   isDraggable,
-  checkResult
+  checkResult,
+  onClickResult
 }) => {
   const [colorCheck, setColorCheck] = useState<string>('#e11a08');
   useEffect(() => {
@@ -32,6 +34,7 @@ export const PiecesResults: FC<PropsResult> = ({
       id={`result-index-${value}`}
       onDragStart={onDragStart}
       draggable={isDraggable}
+      onClick={onClickResult}
     >
       <section className={'result'}>
         = {calculateResults(numberToMultiply, value)}

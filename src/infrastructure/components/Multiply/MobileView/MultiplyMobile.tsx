@@ -24,10 +24,16 @@ export const MultiplyMobile: FC = () => {
     );
   }, [position, positionResults]);
 
+  const handleSelectResult = (event: React.MouseEvent) => {
+    console.log(event.target);
+  };
+
   return (
     <div className={'container-mobile'}>
       <h1 id={'title'}> Tabla del {numberMultiply}</h1>
-      <h4 id={'information'}>Selecciona un resultado y luego la multiplicación que creas correcta</h4>
+      <h4 id={'information'}>
+        Selecciona un resultado y luego la multiplicación que creas correcta
+      </h4>
       <article className={'result'}>
         <section className={'content'}>
           <h1 className={'title-pieces'}>Resultados</h1>
@@ -37,6 +43,7 @@ export const MultiplyMobile: FC = () => {
                 key={value}
                 numberToMultiply={Number(numberMultiply)}
                 value={value}
+                onClickResult={handleSelectResult}
               />
             ))}
           </section>
