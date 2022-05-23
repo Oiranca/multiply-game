@@ -60,12 +60,10 @@
 #home-button:hover {
     cursor: pointer;
     background: var(--secondColor);
-    border: 4px dotted var(--mainColor);
     color: var(--mainColor);
-    border-radius: 0 0 2rem 2rem;
 }
 
-@media screen and (max-width: 640px) {
+@media screen and (max-width: 820px) {
     .section-logo {
         flex-direction: column;
         justify-content: center;
@@ -84,7 +82,7 @@
         margin: unset;
     }
 
-    .navbar-button {
+    #home-button {
         font-size: 0.8rem;
         width: 4rem;
         height: 3.5rem;
@@ -95,6 +93,8 @@
 @media (min-width: 360px) {
 
     .context-navbar{
-        width: 100%;
+        max-width: 100%;
+        min-width: 95%;
     }
-}
+
+ }
