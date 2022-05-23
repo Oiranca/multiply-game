@@ -3,8 +3,10 @@ import { Outlet } from 'react-router-dom';
 import { NavBar } from '../../components/NavBar/NavBar';
 
 import './Container.css';
+import { useWindowWidth } from "../../method/useWindowsWidth/useWindowWidth";
 
 export const Container: FC = () => {
+  console.log(useWindowWidth());
   return (
     <div className={'container-view'}>
       <header className={'header-container'}>
