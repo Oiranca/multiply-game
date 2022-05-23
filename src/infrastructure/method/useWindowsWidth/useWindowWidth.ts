@@ -6,7 +6,7 @@ export const useWindowWidth = () => {
 
   useEffect(() => {
     const listener = () => {
-      setWindowsWith(window.innerWidth);
+      setWindowsWith(window.outerWidth);
 
     };
 
