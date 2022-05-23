@@ -1,15 +1,18 @@
 import React, { FC, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
-import { randomPosition } from '../../../utils/RandomPosition/RandomPositionMethod';
-import { getOrder } from '../../../utils/OrderPosition/OrderPosition';
+import { randomPosition } from '../../../method/RandomPosition/RandomPositionMethod';
+import { getOrder } from '../../../method/OrderPosition/OrderPosition';
 import { PiecesNumbers } from '../../PiecesNumbers/PiecesNumbers';
 import { PiecesResults } from '../../PiecesResults/PiecesResults';
 
+import { useOperationMultiply } from '../../../method/useOperationMultiply/useOperationMultiply';
 import './MultiplyWeb.css';
 
 export const MultiplyWeb: FC = () => {
   const { numberMultiply } = useParams();
+  const { indexNumber, deleteResultCorrect } = useOperationMultiply;
+
   const [resultsCorrect, setResultsCorrect] = useState<Record<number, boolean>>({});
   const [multiplyNumbers, setMultiplyNumbers] = useState<Record<number, boolean>>({});
   const [position] = useState<number[]>(randomPosition(1, 11).sort(getOrder()));
@@ -25,36 +28,25 @@ export const MultiplyWeb: FC = () => {
     );
   }, [position, positionResults]);
 
-  const indexNumber = (e: React.DragEvent) => {
-    const item = e.currentTarget.id;
-
-    return item
-      .split('-')
-      .filter(item => !isNaN(Number(item)))
-      .toString();
-  };
-
   const onDragStartEvent = (e: React.DragEvent) => {
-    e.dataTransfer.setData('text/plain', `${indexNumber(e)}`);
+    const idString = e.currentTarget.id;
+    e.dataTransfer.setData('text/plain', `${indexNumber(idString)}`);
   };
 
   const onDragOverEvent = (e: React.DragEvent) => {
     e.preventDefault();
   };
 
-  const deleteResultCorrect = (dataDropEvent: string) => {
-    const numberToDelete = Number(dataDropEvent);
-    return positionResults.filter(itemToDelete => itemToDelete !== numberToDelete);
-  };
-
   const onDropEvent = (e: React.DragEvent) => {
     e.preventDefault();
+    const idString = e.currentTarget.id;
+
     const dataDragEvent = e.dataTransfer.getData('text');
-    const dataDropEvent = indexNumber(e);
+    const dataDropEvent = indexNumber(idString);
     if (dataDragEvent === dataDropEvent) {
       setResultsCorrect({ ...resultsCorrect, [dataDropEvent]: true });
       setMultiplyNumbers({ ...multiplyNumbers, [dataDropEvent]: true });
-      setPositionResults(deleteResultCorrect(dataDropEvent));
+      setPositionResults(deleteResultCorrect(dataDropEvent, positionResults));
     }
   };
 

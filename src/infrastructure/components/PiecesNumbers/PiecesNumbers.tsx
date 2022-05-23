@@ -4,13 +4,15 @@ import './PiecesNumbers.css';
 interface PropsPiecesNumber {
   numberToMultiply: number;
   value: number;
-  checkOperation?:boolean;
+  checkOperation?: boolean;
+  onClickTable?: (event: React.MouseEvent) => void;
 }
 
 export const PiecesNumbers: FC<PropsPiecesNumber> = ({
   numberToMultiply,
   value,
-                                                       checkOperation
+  checkOperation,
+  onClickTable
 }) => {
   const [values] = useState<number>(value);
   const [colorCheck, setColorCheck] = useState<string>('#e11a08');
@@ -23,6 +25,7 @@ export const PiecesNumbers: FC<PropsPiecesNumber> = ({
     <article
       className={'pieces-number'}
       id={`number-index-${values}`}
+      onClick={onClickTable}
     >
       <section className={'check-operation'} style={{ background: colorCheck }} />
       <section className={'multiply-number'}>{`${numberToMultiply}x${values}`}</section>

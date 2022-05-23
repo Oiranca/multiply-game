@@ -4,7 +4,7 @@ import './PiecesResults.css';
 
 interface PropsResult {
   numberToMultiply: number;
-  value: number;
+  value?: number;
   onDragStart?: (e: React.DragEvent) => void;
   isDraggable?: boolean;
   checkResult?: boolean;
@@ -28,7 +28,7 @@ export const PiecesResults: FC<PropsResult> = ({
     return values * numberToMultiply;
   };
 
-  return (
+  return value !== undefined ? (
     <article
       className={'pieces-result'}
       id={`result-index-${value}`}
@@ -41,5 +41,13 @@ export const PiecesResults: FC<PropsResult> = ({
       </section>
       <section className={'result-check'} style={{ background: colorCheck }} />
     </article>
+  ) : (
+    <article
+      className={'pieces-result'}
+      id={`result-index-${value}`}
+      onDragStart={onDragStart}
+      draggable={isDraggable}
+      onClick={onClickResult}
+    ></article>
   );
 };

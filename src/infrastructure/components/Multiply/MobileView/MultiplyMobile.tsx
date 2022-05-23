@@ -5,14 +5,20 @@ import { getOrder } from '../../../method/OrderPosition/OrderPosition';
 import { PiecesResults } from '../../PiecesResults/PiecesResults';
 import { PiecesNumbers } from '../../PiecesNumbers/PiecesNumbers';
 
+import { useOperationMultiply } from '../../../method/useOperationMultiply/useOperationMultiply';
 import './MultiplyMobile.css';
 
 export const MultiplyMobile: FC = () => {
   const { numberMultiply } = useParams();
+  const { indexNumber, deleteResultCorrect } = useOperationMultiply;
   const [resultsCorrect, setResultsCorrect] = useState<Record<number, boolean>>({});
   const [multiplyNumbers, setMultiplyNumbers] = useState<Record<number, boolean>>({});
   const [position] = useState<number[]>(randomPosition(1, 11).sort(getOrder()));
   const [positionResults, setPositionResults] = useState<number[]>(randomPosition(1, 11));
+  const [selectItemMultiply, setSelectItemMultiply] = useState<Record<string, string>>({
+    tableItem: '',
+    resultItem: ''
+  });
 
   useEffect(() => {
     positionResults.map((valueKey: number) =>
@@ -23,9 +29,39 @@ export const MultiplyMobile: FC = () => {
       setMultiplyNumbers(multiplyNumbers => ({ ...multiplyNumbers, [valueKey]: false }))
     );
   }, [position, positionResults]);
-
+  const operation = (itemResult: string, itemTable: string) => {
+    if (itemResult === itemTable || itemTable === itemResult) {
+      setResultsCorrect({ ...resultsCorrect, [itemResult]: true });
+      setMultiplyNumbers({ ...multiplyNumbers, [itemResult]: true });
+      setPositionResults(deleteResultCorrect(itemTable, positionResults));
+      setSelectItemMultiply({
+        resultItem: '',
+        tableItem: ''
+      });
+    }
+  };
   const handleSelectResult = (event: React.MouseEvent) => {
-    console.log(event.target);
+    const idString = event.currentTarget.id;
+    const index = indexNumber(idString);
+    setSelectItemMultiply({
+      ...selectItemMultiply,
+      resultItem: index
+    });
+    if (selectItemMultiply.tableItem !== '') {
+      operation(index, selectItemMultiply.tableItem);
+    }
+  };
+
+  const handleMultiplyTable = (event: React.MouseEvent) => {
+    const idString = event.currentTarget.id;
+    const index = indexNumber(idString);
+    setSelectItemMultiply({
+      ...selectItemMultiply,
+      tableItem: index
+    });
+    if (selectItemMultiply.resultItem !== '') {
+      operation(selectItemMultiply.resultItem, index);
+    }
   };
 
   return (
@@ -55,7 +91,7 @@ export const MultiplyMobile: FC = () => {
         <article className={'content-table'}>
           <h1 className={'title-pieces'}>Tabla</h1>
           <section className={'table-piece'}>
-            <div>
+            <div className={'pieces-multiply'}>
               {Object.entries(multiplyNumbers).map(value =>
                 !value[1] ? (
                   <div key={Number(value[0])} className={'pieces'}>
@@ -64,6 +100,7 @@ export const MultiplyMobile: FC = () => {
                       numberToMultiply={Number(numberMultiply)}
                       value={Number(value[0])}
                       checkOperation={false}
+                      onClickTable={handleMultiplyTable}
                     />
                   </div>
                 ) : (
@@ -79,13 +116,13 @@ export const MultiplyMobile: FC = () => {
               )}
             </div>
 
-            <div>
+            <div className={'pieces-multiply'}>
               {Object.entries(resultsCorrect).map(value =>
                 !value[1] ? (
-                  <div
+                  <PiecesResults
                     key={Number(value[0])}
-                    id={`number-index-${value[0]}`}
-                    className={`item-result`}
+                    numberToMultiply={Number(numberMultiply)}
+                    checkResult={false}
                   />
                 ) : (
                   <PiecesResults
