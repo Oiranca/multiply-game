@@ -29,6 +29,7 @@ export const Home: FC = () => {
     const numberMultiply = indexNumber(event);
     navigate(`/multiply-game/multiply/${numberMultiply}`);
   };
+  // console.log(Object.entries(elementToSelect).map((value):[string, unknown] => value));
   return (
     <div className={'container-home'}>
       <header className={'header-home'}>
@@ -43,7 +44,7 @@ export const Home: FC = () => {
               className={'multiply'}
               onClick={onSelectMultiply}
             >
-              <p className={'header-multiply'}>{[value[1]]}</p>
+              <p className={'header-multiply'}>{[value[1] as string]}</p>
               <p className={'header-multiply'}>{[value[0]]}</p>
             </section>
           ))}
