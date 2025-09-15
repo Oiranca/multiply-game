@@ -27,9 +27,8 @@ export const Home: FC = () => {
   };
   const onSelectMultiply = (event: React.MouseEvent<HTMLElement>) => {
     const numberMultiply = indexNumber(event);
-    navigate(`/multiply-game/multiply/${numberMultiply}`);
+    navigate(`/multiply/${numberMultiply}`);
   };
-  // console.log(Object.entries(elementToSelect).map((value):[string, unknown] => value));
   return (
     <div className={'container-home'}>
       <header className={'header-home'}>
