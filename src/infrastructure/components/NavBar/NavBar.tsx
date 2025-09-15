@@ -7,7 +7,7 @@ export const NavBar: FC<unknown> = () => {
   const navigate = useNavigate();
 
   const onNavigate = () => {
-    navigate('/multiply-game');
+    navigate('/');
   };
 
   return (

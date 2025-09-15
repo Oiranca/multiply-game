@@ -11,7 +11,7 @@ function App() {
   return (
     <div className="App">
       <Routes>
-        <Route path={'/multiply-game'} element={<Container />}>
+        <Route path={'/'} element={<Container />}>
           <Route index element={<Home />} />
           <Route path={'multiply'} element={<MultiplyIndex />} />
           <Route path={'multiply/:numberMultiply'} element={<MultiplyIndex />} />
