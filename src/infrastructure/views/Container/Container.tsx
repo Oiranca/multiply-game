@@ -1,18 +1,16 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { Outlet } from 'react-router-dom';
 import { NavBar } from '../../components/NavBar/NavBar';
 
-import './Container.css';
-
 export const Container: FC = () => {
   return (
-    <div className={'container-view'}>
-      <header className={'header-container'}>
+    <div className="flex flex-col min-h-screen bg-highlight">
+      <header>
         <NavBar />
       </header>
-      <section className={'section-body'}>
+      <main className="flex-1 flex justify-center items-start">
         <Outlet />
-      </section>
+      </main>
     </div>
   );
 };
