@@ -6,7 +6,7 @@ import { MultiplyMobile } from './MobileView/MultiplyMobile';
 
 export const MultiplyIndex: FC = () => {
   return (
-    <div className="w-full flex justify-center items-start p-4">
+    <div className="w-full flex justify-center items-start p-4 overflow-visible">
       {useWindowWidth() >= 820 ? <MultiplyWeb /> : <MultiplyMobile />}
     </div>
   );
