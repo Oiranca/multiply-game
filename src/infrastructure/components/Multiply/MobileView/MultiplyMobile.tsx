@@ -4,9 +4,9 @@ import { randomPosition } from '../../../method/RandomPosition/RandomPositionMet
 import { getOrder } from '../../../method/OrderPosition/OrderPosition';
 import { PiecesResults } from '../../PiecesResults/PiecesResults';
 import { PiecesNumbers } from '../../PiecesNumbers/PiecesNumbers';
+import { updateMultiplicationTable } from '../../../../services/localStorage.service';
 
 import { useOperationMultiply } from '../../../method/useOperationMultiply/useOperationMultiply';
-import './MultiplyMobile.css';
 
 export const MultiplyMobile: FC = () => {
   const { numberMultiply } = useParams();
@@ -22,11 +22,17 @@ export const MultiplyMobile: FC = () => {
 
   useEffect(() => {
     positionResults.map((valueKey: number) =>
-      setResultsCorrect(resultsCorrect => ({ ...resultsCorrect, [valueKey]: false }))
+      setResultsCorrect((resultsCorrect: Record<number, boolean>) => ({
+        ...resultsCorrect,
+        [valueKey]: false
+      }))
     );
 
     position.map((valueKey: number) =>
-      setMultiplyNumbers(multiplyNumbers => ({ ...multiplyNumbers, [valueKey]: false }))
+      setMultiplyNumbers((multiplyNumbers: Record<number, boolean>) => ({
+        ...multiplyNumbers,
+        [valueKey]: false
+      }))
     );
   }, [position, positionResults]);
   const operation = (itemResult: string, itemTable: string) => {
@@ -64,19 +70,30 @@ export const MultiplyMobile: FC = () => {
     }
   };
 
+  // Track completion and save to localStorage
+  useEffect(() => {
+    if (positionResults.length === 0 && numberMultiply) {
+      updateMultiplicationTable(Number(numberMultiply));
+    }
+  }, [positionResults, numberMultiply]);
+
   return (
-    <div className={'container-mobile'}>
-      <header className={'header-mobile'}>
-        <h1 id={'title'}> Tabla del {numberMultiply}</h1>
-        <h4 id={'information'}>
+    <div className="flex flex-col flex-wrap justify-center content-center">
+      <header className="flex flex-col items-center">
+        <h1 className="text-base text-center text-main bg-second max-w-[70%] min-w-[50%] p-2 border-2 border-main rounded-b-2xl">
+          Tabla del {numberMultiply}
+        </h1>
+        <h4 className="text-center m-0 text-xs font-variant-all-petite-caps">
           Selecciona un resultado y luego la multiplicación que creas correcta
         </h4>
       </header>
-      <section className={'body-mobile-container'}>
-        <article className={'result'}>
-          <section className={'content'}>
-            <h1 className={'title-pieces'}>Resultados</h1>
-            <section className={'piece'}>
+      <section className="flex flex-row-reverse flex-nowrap justify-between gap-4 my-4">
+        <article className="flex flex-row flex-wrap justify-center items-center max-w-[50%] min-w-[30%]">
+          <section className="flex flex-col justify-around items-center bg-second border-2 border-main rounded-2xl">
+            <h1 className="text-base text-center text-main bg-second p-2 m-2 border-2 border-main rounded-[5rem]">
+              Resultados
+            </h1>
+            <section className="grid grid-cols-1 m-1">
               {positionResults.map(value => (
                 <PiecesResults
                   key={value}
@@ -88,13 +105,15 @@ export const MultiplyMobile: FC = () => {
             </section>
           </section>
         </article>
-        <article className={'content-table'}>
-          <h1 className={'title-pieces'}>Tabla</h1>
-          <section className={'table-piece'}>
-            <div className={'pieces-multiply'}>
+        <article className="flex flex-col items-center bg-second border-2 border-main rounded-2xl">
+          <h1 className="text-base text-center text-main bg-second p-2 m-2 border-2 border-main rounded-[5rem]">
+            Tabla
+          </h1>
+          <section className="grid grid-cols-2 m-1">
+            <div className="grid grid-cols-1 m-1">
               {Object.entries(multiplyNumbers).map(value =>
                 !value[1] ? (
-                  <div key={Number(value[0])} className={'pieces'}>
+                  <div key={Number(value[0])} className="m-1">
                     <PiecesNumbers
                       key={Number(value[0])}
                       numberToMultiply={Number(numberMultiply)}
@@ -116,7 +135,7 @@ export const MultiplyMobile: FC = () => {
               )}
             </div>
 
-            <div className={'pieces-multiply'}>
+            <div className="grid grid-cols-1 m-1">
               {Object.entries(resultsCorrect).map(value =>
                 !value[1] ? (
                   <PiecesResults

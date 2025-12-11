@@ -1,23 +1,45 @@
-:root {
-    --mainColor: #4B6587;
-    --secondColor: #F0E5CF;
-    --highlightColor: #F7F6F2;
-    --shadowColor: #C8C6C6;
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
 
-}
-
-
-body {
-    margin: 0;
+@layer base {
+  body {
+    @apply m-0 bg-highlight;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
-    'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
-    sans-serif;
+      'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+      sans-serif;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
-    background-color: var(--highlightColor);
+  }
+
+  code {
+    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
+      monospace;
+  }
 }
 
-code {
-    font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
-    monospace;
+@layer utilities {
+  .shadow-main {
+    box-shadow: 0 0 15px 5px rgba(75, 101, 135, 0.5);
+  }
+
+  .shadow-second {
+    box-shadow: 0 0 15px 5px rgba(240, 229, 207, 0.5);
+  }
+
+  .focus-ring {
+    @apply focus:outline-none focus:ring-2 focus:ring-main focus:ring-offset-2;
+  }
+
+  .piece-size {
+    @apply w-20 h-10 sm:w-24 sm:h-12 md:w-20 md:h-10 lg:w-24 lg:h-12;
+  }
+
+  .piece-base {
+    @apply flex justify-evenly items-center gap-1 sm:gap-2 m-1 sm:m-2 piece-size bg-main text-second transition-all duration-200;
+  }
+
+  .piece-interactive {
+    @apply hover:shadow-lg hover:scale-105 active:scale-95 cursor-pointer focus-ring;
+  }
 }
