@@ -1,11 +1,11 @@
-import React, { FC, useState } from 'react';
+import { FC, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import { useUser } from '../../../context/UserContext';
 import Logo from '../../../assets/img/logo.png';
 
 export const NavBar: FC = () => {
   const navigate = useNavigate();
-  const { isGuest, logout, user, isAuthenticated } = useUser();
+  const { isGuest, logout, isAuthenticated } = useUser();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const showProfileButton = isAuthenticated && !isGuest;

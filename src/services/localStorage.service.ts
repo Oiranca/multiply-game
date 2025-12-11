@@ -86,12 +86,15 @@ export const updateMultiplicationTable = (
 
   if (userIndex === -1) return;
 
+  const user = users[userIndex];
+  if (!user) return;
+
   const tableKey = tableNumber.toString();
-  if (!users[userIndex].multiplicationTables[tableKey]) {
-    users[userIndex].multiplicationTables[tableKey] = 0;
+  if (!user.multiplicationTables[tableKey]) {
+    user.multiplicationTables[tableKey] = 0;
   }
 
-  users[userIndex].multiplicationTables[tableKey] += 1;
+  user.multiplicationTables[tableKey] += 1;
   saveAllUsers(users);
 };
 

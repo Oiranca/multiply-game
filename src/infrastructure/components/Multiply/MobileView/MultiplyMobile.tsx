@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 import { randomPosition } from '../../../method/RandomPosition/RandomPositionMethod';
 import { getOrder } from '../../../method/OrderPosition/OrderPosition';
@@ -54,7 +54,7 @@ export const MultiplyMobile: FC = () => {
       resultItem: index
     });
     if (selectItemMultiply.tableItem !== '') {
-      operation(index, selectItemMultiply.tableItem);
+      operation(index, selectItemMultiply.tableItem || '');
     }
   };
 
@@ -66,7 +66,7 @@ export const MultiplyMobile: FC = () => {
       tableItem: index
     });
     if (selectItemMultiply.resultItem !== '') {
-      operation(selectItemMultiply.resultItem, index);
+      operation(selectItemMultiply.resultItem || '', index);
     }
   };
 

@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 
 import { MultiplyWeb } from './MultiplyWeb/MultiplyWeb';
 import { useWindowWidth } from '../../method/useWindowsWidth/useWindowWidth';

@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import Logo from '../../../assets/img/logo.png';
 import { useNavigate } from 'react-router-dom';
 

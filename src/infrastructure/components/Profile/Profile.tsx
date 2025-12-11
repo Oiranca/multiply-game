@@ -1,4 +1,4 @@
-import React, { FC } from 'react';
+import { FC } from 'react';
 import { useUser } from '../../../context/UserContext';
 import { getMultiplicationStats } from '../../../services/localStorage.service';
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import { Route, Routes, Navigate } from 'react-router-dom';
 import { UserProvider } from './context/UserContext';
 import { Container } from './infrastructure/views/Container/Container';

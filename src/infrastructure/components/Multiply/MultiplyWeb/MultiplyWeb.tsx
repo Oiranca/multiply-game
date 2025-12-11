@@ -1,4 +1,4 @@
-import React, { FC, useEffect, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import { useParams } from 'react-router-dom';
 
 import { randomPosition } from '../../../method/RandomPosition/RandomPositionMethod';
@@ -66,6 +66,8 @@ export const MultiplyWeb: FC = () => {
     if (!draggedValue) return;
 
     const touch = e.changedTouches[0];
+    if (!touch) return;
+    
     const element = document.elementFromPoint(touch.clientX, touch.clientY);
     
     if (element) {
