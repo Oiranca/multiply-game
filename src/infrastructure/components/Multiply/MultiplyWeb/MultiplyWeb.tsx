@@ -20,19 +20,20 @@ export const MultiplyWeb: FC = () => {
   const [draggedValue, setDraggedValue] = useState<string | null>(null);
 
   useEffect(() => {
-    positionResults.map((valueKey: number) =>
-      setResultsCorrect((resultsCorrect: Record<number, boolean>) => ({
-        ...resultsCorrect,
-        [valueKey]: false
-      }))
-    );
+    // Initialize resultsCorrect with all positions (1-10) to match multiplyNumbers
+    // This ensures all drop zones are visible, matching the structure in MultiplyMobile
+    const initialResultsCorrect: Record<number, boolean> = {};
+    position.forEach((valueKey: number) => {
+      initialResultsCorrect[valueKey] = false;
+    });
+    setResultsCorrect(initialResultsCorrect);
 
-    position.map((valueKey: number) =>
-      setMultiplyNumbers((multiplyNumbers: Record<number, boolean>) => ({
-        ...multiplyNumbers,
-        [valueKey]: false
-      }))
-    );
+    // Initialize multiplyNumbers with all positions
+    const initialMultiplyNumbers: Record<number, boolean> = {};
+    position.forEach((valueKey: number) => {
+      initialMultiplyNumbers[valueKey] = false;
+    });
+    setMultiplyNumbers(initialMultiplyNumbers);
   }, [position, positionResults]);
 
   const onDragStartEvent = (e: React.DragEvent) => {
@@ -95,16 +96,82 @@ export const MultiplyWeb: FC = () => {
   }, [positionResults, numberMultiply]);
 
   return (
-    <div className="flex flex-row-reverse justify-evenly items-center border-2 border-main rounded-2xl shadow-main">
-      <article className="flex flex-row flex-wrap justify-center items-center max-w-[50%] min-w-[30%]">
-        <h1 className="text-2xl text-center text-main bg-second max-w-[70%] min-w-[50%] p-8 border-2 border-main rounded-b-2xl">
-          Tabla del {numberMultiply}
-        </h1>
-        <section className="flex flex-col justify-around items-center bg-second m-4 p-4 border-2 border-main rounded-2xl">
-          <h1 className="text-base text-center text-main bg-second w-[calc(80%-10%)] p-8 m-8 border-2 border-main rounded-[5rem]">
-            Lista de resultados
+    <div className="flex flex-col lg:flex-row gap-4 lg:gap-6 w-full max-w-[95%] lg:max-w-[90%] xl:max-w-[85%] 2xl:max-w-[80%]">
+      {/* Left Section: Multiplication Problems List with Drop Zones */}
+      <article className="flex flex-row gap-4 w-full lg:w-auto bg-second border-2 border-main rounded-2xl shadow-main p-4 lg:p-6 items-start">
+        {/* Problems List */}
+        <ul className="flex flex-col gap-2 lg:gap-3 list-none flex-1 lg:flex-none lg:min-w-[200px]">
+          {Object.entries(multiplyNumbers)
+            .sort((a, b) => Number(a[0]) - Number(b[0]))
+            .map(value =>
+              !value[1] ? (
+                <li key={Number(value[0])} className="flex-shrink-0">
+                  <PiecesNumbers
+                    numberToMultiply={Number(numberMultiply)}
+                    value={Number(value[0])}
+                    checkOperation={false}
+                  />
+                </li>
+              ) : (
+                <li key={Number(value[0])} className="flex-shrink-0">
+                  <PiecesNumbers
+                    numberToMultiply={Number(numberMultiply)}
+                    value={Number(value[0])}
+                    checkOperation={true}
+                  />
+                </li>
+              )
+            )}
+        </ul>
+
+        {/* Drop Zones - Map from multiplyNumbers to ensure all 10 zones are visible */}
+        <ul className="flex flex-col gap-2 lg:gap-3 list-none lg:min-w-[200px] justify-start">
+          {Object.entries(multiplyNumbers)
+            .sort((a, b) => Number(a[0]) - Number(b[0]))
+            .map(value => {
+              const numberValue = Number(value[0]);
+              const isCorrect = resultsCorrect[numberValue] === true;
+              
+              // Show drop zone for all multiplyNumbers (1-10), matching the order and height
+              return !isCorrect ? (
+                <li
+                  key={numberValue}
+                  id={`number-index-${numberValue}`}
+                  className="piece-size border-2 border-dashed border-main rounded-lg flex items-center justify-center bg-main/10 hover:bg-main/20 transition-colors flex-shrink-0 m-1 sm:m-2"
+                  data-drop-zone
+                  onDragOver={onDragOverEvent}
+                  onDrop={onDropEvent}
+                  onTouchEnd={onTouchEndEvent}
+                  aria-label={`Zona de destino para resultado ${numberValue}`}
+                />
+              ) : (
+                <li key={numberValue} className="flex-shrink-0">
+                  <PiecesResults
+                    numberToMultiply={Number(numberMultiply)}
+                    value={numberValue}
+                    checkResult={true}
+                  />
+                </li>
+              );
+            })}
+        </ul>
+      </article>
+
+      {/* Right Section: Game Area */}
+      <article className="flex flex-col flex-1 gap-4 lg:gap-6">
+        {/* Title */}
+        <div className="bg-second border-2 border-main rounded-2xl shadow-main p-4 lg:p-6 text-center">
+          <h1 className="text-xl lg:text-2xl xl:text-3xl text-main font-bold">
+            Tabla del {numberMultiply}
           </h1>
-          <section className="grid grid-cols-3 grid-rows-[repeat(auto-fit,1fr)] m-4">
+        </div>
+
+        {/* Results Grid */}
+        <section className="flex flex-col bg-second border-2 border-main rounded-2xl shadow-main p-4 lg:p-6">
+          <h2 className="text-lg lg:text-xl text-center text-main font-bold mb-4 lg:mb-6 pb-2 border-b-2 border-main">
+            Lista de resultados
+          </h2>
+          <div className="grid grid-cols-3 gap-3 lg:gap-4 xl:gap-5">
             {positionResults.map(value => (
               <PiecesResults
                 key={value}
@@ -115,62 +182,8 @@ export const MultiplyWeb: FC = () => {
                 isDraggable={true}
               />
             ))}
-          </section>
+          </div>
         </section>
-      </article>
-      <article className="flex flex-row m-8 p-4 border-2 border-main bg-second rounded-2xl">
-        <ul className="flex flex-col justify-center list-none">
-          {Object.entries(multiplyNumbers).map(value =>
-            !value[1] ? (
-              <li key={Number(value[0])} className="border border-gray-400 rounded-lg m-2">
-                <PiecesNumbers
-                  key={Number(value[0])}
-                  numberToMultiply={Number(numberMultiply)}
-                  value={Number(value[0])}
-                  checkOperation={false}
-                />
-              </li>
-            ) : (
-              <li key={Number(value[0])} className="border border-gray-400 rounded-lg m-2">
-                <PiecesNumbers
-                  key={Number(value[0])}
-                  numberToMultiply={Number(numberMultiply)}
-                  value={Number(value[0])}
-                  checkOperation={true}
-                />
-              </li>
-            )
-          )}
-        </ul>
-
-        <ul className="flex flex-col justify-between list-none">
-          {Object.entries(resultsCorrect).map(value =>
-            !value[1] ? (
-              <li
-                key={Number(value[0])}
-                id={`number-index-${value[0]}`}
-                className="border border-gray-400 rounded-lg w-22 h-10 m-2"
-                data-drop-zone
-                onDragOver={onDragOverEvent}
-                onDrop={onDropEvent}
-                onTouchEnd={onTouchEndEvent}
-              />
-            ) : (
-              <li
-                key={Number(value[0])}
-                id={`number-index-${value[0]}`}
-                className="border border-gray-400 rounded-lg m-2"
-              >
-                <PiecesResults
-                  key={Number(value[0])}
-                  numberToMultiply={Number(numberMultiply)}
-                  value={Number(value[0])}
-                  checkResult={true}
-                />
-              </li>
-            )
-          )}
-        </ul>
       </article>
     </div>
   );
