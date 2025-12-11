@@ -1,10 +1,12 @@
 import { FC, useEffect, useState } from 'react';
 
+type InteractiveEvent = React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>;
+
 interface PropsPiecesNumber {
   numberToMultiply: number;
   value: number;
   checkOperation?: boolean;
-  onClickTable?: (event: React.MouseEvent) => void;
+  onClickTable?: (event: InteractiveEvent) => void;
 }
 
 export const PiecesNumbers: FC<PropsPiecesNumber> = ({
@@ -20,10 +22,10 @@ export const PiecesNumbers: FC<PropsPiecesNumber> = ({
     setIsCorrect(!!checkOperation);
   }, [checkOperation]);
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
     if ((e.key === 'Enter' || e.key === ' ') && onClickTable) {
       e.preventDefault();
-      onClickTable(e as any);
+      onClickTable(e);
     }
   };
 

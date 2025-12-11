@@ -44,7 +44,7 @@ export const NavBar: FC = () => {
           type="button"
           onClick={toggleMenu}
           className="md:hidden flex flex-col justify-center items-center w-10 h-10 text-second hover:bg-second/20 rounded-lg transition-colors focus-ring"
-          aria-label="Toggle menu"
+          aria-label={isMenuOpen ? 'Cerrar menú' : 'Abrir menú'}
           aria-expanded={isMenuOpen}
         >
           <span

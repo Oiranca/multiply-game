@@ -1,5 +1,7 @@
 import { FC, useEffect, useState } from 'react';
 
+type InteractiveEvent = React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>;
+
 interface PropsResult {
   numberToMultiply: number;
   value?: number;
@@ -7,7 +9,7 @@ interface PropsResult {
   onTouchStart?: (e: React.TouchEvent) => void;
   isDraggable?: boolean;
   checkResult?: boolean;
-  onClickResult?: (event: React.MouseEvent) => void;
+  onClickResult?: (event: InteractiveEvent) => void;
 }
 
 export const PiecesResults: FC<PropsResult> = ({
@@ -29,10 +31,10 @@ export const PiecesResults: FC<PropsResult> = ({
     return values * numberToMultiply;
   };
 
-  const handleKeyDown = (e: React.KeyboardEvent) => {
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLElement>) => {
     if ((e.key === 'Enter' || e.key === ' ') && onClickResult) {
       e.preventDefault();
-      onClickResult(e as any);
+      onClickResult(e);
     }
   };
 

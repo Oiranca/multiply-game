@@ -8,6 +8,8 @@ import { updateMultiplicationTable } from '../../../../services/localStorage.ser
 
 import { useOperationMultiply } from '../../../method/useOperationMultiply/useOperationMultiply';
 
+type InteractiveEvent = React.MouseEvent<HTMLElement> | React.KeyboardEvent<HTMLElement>;
+
 export const MultiplyMobile: FC = () => {
   const { numberMultiply } = useParams();
   const { indexNumber, deleteResultCorrect } = useOperationMultiply;
@@ -46,7 +48,7 @@ export const MultiplyMobile: FC = () => {
       });
     }
   };
-  const handleSelectResult = (event: React.MouseEvent) => {
+  const handleSelectResult = (event: InteractiveEvent) => {
     const idString = event.currentTarget.id;
     const index = indexNumber(idString);
     setSelectItemMultiply({
@@ -58,7 +60,7 @@ export const MultiplyMobile: FC = () => {
     }
   };
 
-  const handleMultiplyTable = (event: React.MouseEvent) => {
+  const handleMultiplyTable = (event: InteractiveEvent) => {
     const idString = event.currentTarget.id;
     const index = indexNumber(idString);
     setSelectItemMultiply({
